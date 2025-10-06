@@ -1,0 +1,386 @@
+<!-- Section 1 -->
+<section aria-label="Nos atouts VTC" style="font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; max-width:980px; margin:24px auto; padding:18px; box-sizing:border-box;">
+  <style>
+    .atouts-container{border-radius:12px; padding:18px; background:linear-gradient(180deg,#ffffff,#fbfcff); box-shadow:0 6px 18px rgba(8,16,30,0.05)}
+    .atouts-header{display:flex; gap:12px; align-items:center; margin-bottom:14px}
+    .atouts-title{font-size:20px; font-weight:700; color:#071627}
+    .atouts-sub{color:#556070; font-size:13px}
+    .atouts-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:12px}
+    .atout-card{display:flex; gap:12px; align-items:flex-start; padding:12px; border-radius:10px; background:#fff; border:1px solid rgba(10,20,30,0.04); transform:translateY(0); transition:transform .28s ease, box-shadow .28s ease}
+    .atout-card:hover{transform:translateY(-6px); box-shadow:0 12px 30px rgba(10,20,30,0.08)}
+    .atout-icon{flex:0 0 56px; height:56px; display:grid; place-items:center; border-radius:12px; background:linear-gradient(180deg,#f4f9ff,#eef6ff); animation:float 6s ease-in-out infinite}
+    .atout-label{font-weight:700; color:#071627; margin-bottom:6px}
+    .atout-desc{font-size:13px; color:#586979}
+
+    @keyframes float{0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+
+    /* small screens */
+    @media (max-width:420px){.atouts-title{font-size:18px}.atout-icon{flex-basis:48px;height:48px;border-radius:10px}}
+  </style>
+
+  <div class="atouts-container">
+    <div class="atouts-header">
+      <div style="width:52px;height:52px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(180deg,#e9f8f6,#f8fffd);">
+        <!-- shield star svg -->
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <path d="M12 2l6 3v5c0 5-3 9-6 11-3-2-6-6-6-11V5l6-3z" stroke="#0b5a4a" stroke-width="1.2" stroke-linejoin="round" stroke-linecap="round"/>
+          <path d="M12 8l1.5 3L17 12l-2.5 2L15 17l-3-1.5L9 17l.5-3L7 12l3.5-.5L12 8z" stroke="#0b5a4a" stroke-width="1" stroke-linejoin="round" stroke-linecap="round" fill="#fff"/>
+        </svg>
+      </div>
+      <div>
+        <div class="atouts-title">Nos atouts</div>
+        <div class="atouts-sub">Ce qui nous rend unique — simplicité, sécurité et confort.</div>
+      </div>
+    </div>
+
+    <div class="atouts-grid">
+
+      <article class="atout-card" aria-labelledby="a1">
+        <div class="atout-icon" aria-hidden>
+          <!-- clock svg -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <circle cx="12" cy="12" r="9" stroke="#1f6fb0" stroke-width="1.2"/>
+            <path d="M12 7v6l4 2" stroke="#1f6fb0" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div>
+          <div id="a1" class="atout-label">Ponctualité garantie</div>
+          <div class="atout-desc">Toujours à l’heure — suivi en temps réel de votre chauffeur pour une arrivée sans stress.</div>
+        </div>
+      </article>
+
+      <article class="atout-card" aria-labelledby="a2">
+        <div class="atout-icon" aria-hidden>
+          <!-- car + sparkle svg -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <path d="M3 15s1-4 5-4h8s3 0 4 4" stroke="#0b7a5f" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+            <rect x="6" y="9" width="12" height="5" rx="1" stroke="#0b7a5f" stroke-width="1.2"/>
+            <path d="M8 18v.5M16 18v.5" stroke="#0b7a5f" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M20 6l.8 1.6L22 8" stroke="#0b7a5f" stroke-width="1.2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div id="a2" class="atout-label">Confort & propreté</div>
+          <div class="atout-desc">Véhicules haut de gamme, entretenus quotidiennement et présentés impeccables.</div>
+        </div>
+      </article>
+
+      <article class="atout-card" aria-labelledby="a3">
+        <div class="atout-icon" aria-hidden>
+          <!-- briefcase user svg -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <rect x="3" y="7" width="18" height="11" rx="2" stroke="#6b4f9a" stroke-width="1.2"/>
+            <path d="M8 7V6a4 4 0 0 1 8 0v1" stroke="#6b4f9a" stroke-width="1.2" stroke-linecap="round"/>
+            <circle cx="12" cy="13" r="1.4" stroke="#6b4f9a" stroke-width="1"/>
+          </svg>
+        </div>
+        <div>
+          <div id="a3" class="atout-label">Service professionnel</div>
+          <div class="atout-desc">Chauffeurs expérimentés, discrets et disponibles 24h/24 — une expérience soignée à chaque course.</div>
+        </div>
+      </article>
+
+      <article class="atout-card" aria-labelledby="a4">
+        <div class="atout-icon" aria-hidden>
+          <!-- card + lock svg -->
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+            <rect x="3" y="7" width="14" height="10" rx="2" stroke="#b04a88" stroke-width="1.2"/>
+            <path d="M18 10v3" stroke="#b04a88" stroke-width="1.2" stroke-linecap="round"/>
+            <rect x="17" y="12" width="4" height="3" rx="1" stroke="#b04a88" stroke-width="1.2"/>
+            <path d="M6 12h.01" stroke="#b04a88" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div>
+          <div id="a4" class="atout-label">Paiement sécurisé</div>
+          <div class="atout-desc">Paiement en ligne ou à bord, sans contact — transactions sécurisées et simples.</div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- Section 2 -->
+<section aria-label="Aperçu des services VTC" style="font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; max-width:980px; margin:24px auto; padding:18px; box-sizing:border-box;">
+  <style>
+    .vtc-container{border-radius:12px; padding:18px; background:linear-gradient(180deg,#ffffff, #fbfbfb); box-shadow:0 6px 18px rgba(12,18,30,0.06);}
+    .vtc-header{display:flex; gap:12px; align-items:center; margin-bottom:14px}
+    .vtc-title{font-size:20px; font-weight:700; color:#0b1a2b}
+    .vtc-sub{color:#556070; font-size:13px}
+    .vtc-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:12px}
+    .vtc-card{display:flex; gap:12px; align-items:flex-start; padding:12px; border-radius:10px; background:#fff; border:1px solid rgba(10,20,35,0.03)}
+    .vtc-icon{flex:0 0 44px; height:44px; display:grid; place-items:center; border-radius:8px; background:linear-gradient(180deg,#f6f9ff,#eef6ff);}
+    .vtc-label{font-weight:600; color:#0b1a2b; margin-bottom:4px}
+    .vtc-desc{font-size:13px; color:#596878}
+    @media (max-width:420px){.vtc-title{font-size:18px}}
+  </style>
+
+  <div class="vtc-container">
+    <div class="vtc-header">
+      <div style="width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(180deg,#ffeede,#fff0e6);">
+        <!-- simple steering wheel svg -->
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <path d="M12 2v4" stroke="#8a5a00" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="12" cy="12" r="9" stroke="#8a5a00" stroke-width="1.6"/>
+          <path d="M7 17c1-2 3-3 5-3s4 1 5 3" stroke="#8a5a00" stroke-width="1.6" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="vtc-title">Aperçu des services</div>
+        <div class="vtc-sub">Confort, ponctualité et discrétion — découvrez nos prestations en un coup d'œil.</div>
+      </div>
+    </div>
+
+    <div class="vtc-grid">
+
+      <article class="vtc-card" aria-labelledby="s1">
+        <div class="vtc-icon" aria-hidden>✈️</div>
+        <div>
+          <div id="s1" class="vtc-label">Transfert aéroport / gare</div>
+          <div class="vtc-desc">Prise en charge à l’arrivée, suivi de vol et arrivée à l’heure sans stress.</div>
+        </div>
+      </article>
+
+      <article class="vtc-card" aria-labelledby="s2">
+        <div class="vtc-icon" aria-hidden>🌍</div>
+        <div>
+          <div id="s2" class="vtc-label">Trajets longue distance</div>
+          <div class="vtc-desc">Déplacements inter‑villes dans un véhicule haut de gamme, avec tarifs transparents.</div>
+        </div>
+      </article>
+
+      <article class="vtc-card" aria-labelledby="s3">
+        <div class="vtc-icon" aria-hidden>🕓</div>
+        <div>
+          <div id="s3" class="vtc-label">Mise à disposition à l'heure</div>
+          <div class="vtc-desc">Chauffeur à disposition pour vos rendez‑vous, journées ou événements selon vos besoins.</div>
+        </div>
+      </article>
+
+      <article class="vtc-card" aria-labelledby="s4">
+        <div class="vtc-icon" aria-hidden>💍</div>
+        <div>
+          <div id="s4" class="vtc-label">Événements privés</div>
+          <div class="vtc-desc">Mariages, soirées, réceptions — un service discret et soigné pour vos invités.</div>
+        </div>
+      </article>
+
+      <article class="vtc-card" aria-labelledby="s5">
+        <div class="vtc-icon" aria-hidden>🌙</div>
+        <div>
+          <div id="s5" class="vtc-label">Courses de nuit</div>
+          <div class="vtc-desc">Déplacements sûrs et disponibles 24/7, même tard le soir.</div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Section 3 -->
+<section aria-label="Pourquoi nous choisir ?" style="font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; max-width:980px; margin:24px auto; padding:18px; box-sizing:border-box;">
+  <style>
+    .pourquoi-container{border-radius:12px; padding:18px; background:linear-gradient(180deg,#ffffff,#f8fbff); box-shadow:0 6px 18px rgba(8,16,30,0.05)}
+    .pourquoi-header{display:flex; gap:12px; align-items:center; margin-bottom:16px}
+    .pourquoi-title{font-size:20px; font-weight:700; color:#071627}
+    .pourquoi-sub{color:#556070; font-size:13px}
+    .pourquoi-list{display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; margin-top:14px}
+    .pourquoi-item{display:flex; align-items:center; gap:10px; padding:10px 12px; background:#fff; border-radius:10px; border:1px solid rgba(10,20,30,0.04); transition:transform .3s ease, box-shadow .3s ease}
+    .pourquoi-item:hover{transform:translateY(-4px); box-shadow:0 8px 20px rgba(10,20,30,0.06)}
+    .pourquoi-icon{font-size:20px}
+    .pourquoi-text{font-size:14px; color:#071627; font-weight:500}
+
+    /* Compteurs */
+    .pourquoi-stats{display:flex; flex-wrap:wrap; justify-content:center; gap:24px; margin-top:24px; padding-top:16px; border-top:1px solid rgba(10,20,30,0.08)}
+    .stat-box{display:flex; flex-direction:column; align-items:center; gap:4px; padding:8px 12px; border-radius:10px; background:linear-gradient(180deg,#f6f9ff,#eef6ff); min-width:130px; animation:fadeIn 1s ease both}
+    .stat-icon{font-size:24px}
+    .stat-number{font-size:18px; font-weight:700; color:#0b1a2b}
+    .stat-label{font-size:13px; color:#556070}
+
+    @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+
+    @media (max-width:480px){.pourquoi-title{font-size:18px}.stat-box{min-width:100px}}
+  </style>
+
+  <div class="pourquoi-container">
+    <div class="pourquoi-header">
+      <div style="width:52px;height:52px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(180deg,#fff5e0,#fffaf0);">
+        <!-- thumbs up svg -->
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden>
+          <path d="M2 10h4v10H2zM6 10l4-7h2v7h7a1 1 0 0 1 1 1v1l-2 7H6V10z" stroke="#b07500" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="pourquoi-title">Pourquoi nous choisir ?</div>
+        <div class="pourquoi-sub">Un service de confiance, pensé pour votre confort et votre tranquillité.</div>
+      </div>
+    </div>
+
+    <div class="pourquoi-list">
+      <div class="pourquoi-item"><span class="pourquoi-icon">🚘</span><span class="pourquoi-text">Véhicules récents et confortables</span></div>
+      <div class="pourquoi-item"><span class="pourquoi-icon">👨‍✈️</span><span class="pourquoi-text">Conducteurs formés & assurés</span></div>
+      <div class="pourquoi-item"><span class="pourquoi-icon">📱</span><span class="pourquoi-text">Application simple et moderne</span></div>
+      <div class="pourquoi-item"><span class="pourquoi-icon">⚡</span><span class="pourquoi-text">Réactivité et disponibilité</span></div>
+      <div class="pourquoi-item"><span class="pourquoi-icon">⭐️</span><span class="pourquoi-text">Satisfaction client garantie</span></div>
+    </div>
+
+    <div class="pourquoi-stats">
+      <div class="stat-box" style="animation-delay:0.1s">
+        <div class="stat-icon">🚗</div>
+        <div class="stat-number">+500</div>
+        <div class="stat-label">trajets effectués</div>
+      </div>
+      <div class="stat-box" style="animation-delay:0.2s">
+        <div class="stat-icon">⭐️</div>
+        <div class="stat-number">100%</div>
+        <div class="stat-label">clients satisfaits</div>
+      </div>
+      <div class="stat-box" style="animation-delay:0.3s">
+        <div class="stat-icon">📍</div>
+        <div class="stat-number">5</div>
+        <div class="stat-label">pays d’Europe</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- Section 4 -->
+<section style="padding:60px 20px;background:#f8f9fa;text-align:center;font-family:'Poppins',sans-serif;">
+  <h2 style="font-size:2rem;font-weight:700;margin-bottom:10px;">📲 Téléchargez notre application <span style="color:#d32f2f;">AE Transport</span></h2>
+  <p style="font-size:1.1rem;color:#555;max-width:600px;margin:0 auto 40px;">Réservez, suivez et payez vos trajets en un clic depuis votre smartphone.</p>
+
+  <div style="display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;">
+    <a href="#" style="background:#000;color:#fff;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:10px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/App_Store_(iOS)_logo.svg" alt="App Store" width="24">App Store
+    </a>
+    <a href="#" style="background:#34a853;color:#fff;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:10px;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_FR.svg" alt="Google Play" width="24">Google Play
+    </a>
+  </div>
+
+<!--
+  <div style="margin-top:40px;">
+    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://tonlienapp.com" alt="QR code AE Transport" style="border:4px solid #d32f2f;border-radius:10px;">
+  </div>
+
+  <div style="margin-top:60px;display:flex;justify-content:center;align-items:center;">
+    <div style="width:200px;height:400px;border:12px solid #000;border-radius:30px;position:relative;overflow:hidden;background:#fff;animation:floatPhone 4s ease-in-out infinite;">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3a/Taxi_app_mockup.jpg" alt="Aperçu application AE Transport" style="width:100%;height:100%;object-fit:cover;">
+    </div>
+  </div>
+-->
+  <style>
+    @keyframes floatPhone {
+      0%,100% { transform:translateY(0); }
+      50% { transform:translateY(-10px); }
+    }
+  </style>
+</section>
+
+
+<!-- Section 5 -->
+<section style="padding:60px 20px;background:#fff9f9;text-align:center;font-family:'Poppins',sans-serif;">
+  <h2 style="font-size:2rem;font-weight:700;margin-bottom:10px;color:#d32f2f;">💬 Avis de nos clients</h2>
+  <p style="font-size:1.1rem;color:#555;margin-bottom:40px;">Ils nous font confiance pour leurs déplacements, découvrez leurs expériences.</p>
+
+  <div style="display:flex;justify-content:center;align-items:stretch;gap:20px;flex-wrap:wrap;max-width:1000px;margin:0 auto;">
+    <div class="avis-card" style="background:#fff;border-radius:16px;padding:20px;box-shadow:0 4px 10px rgba(0,0,0,0.1);flex:1;min-width:280px;transition:transform 0.3s;">
+      <div style="font-size:1.5rem;color:#ffb400;">⭐️⭐️⭐️⭐️⭐️</div>
+      <p style="font-style:italic;color:#444;margin:15px 0;">“Service impeccable, chauffeur très professionnel.”</p>
+      <p style="font-weight:600;color:#222;">– Sabrina</p>
+    </div>
+
+    <div class="avis-card" style="background:#fff;border-radius:16px;padding:20px;box-shadow:0 4px 10px rgba(0,0,0,0.1);flex:1;min-width:280px;transition:transform 0.3s;">
+      <div style="font-size:1.5rem;color:#ffb400;">⭐️⭐️⭐️⭐️⭐️</div>
+      <p style="font-style:italic;color:#444;margin:15px 0;">“Toujours ponctuel, voiture nickel, je recommande.”</p>
+      <p style="font-weight:600;color:#222;">– Youssef</p>
+    </div>
+
+    <div class="avis-card" style="background:#fff;border-radius:16px;padding:20px;box-shadow:0 4px 10px rgba(0,0,0,0.1);flex:1;min-width:280px;transition:transform 0.3s;">
+      <div style="font-size:1.5rem;color:#ffb400;">⭐️⭐️⭐️⭐️⭐️</div>
+      <p style="font-style:italic;color:#444;margin:15px 0;">“Excellent service, chauffeur agréable et attentionné.”</p>
+      <p style="font-weight:600;color:#222;">– Claire</p>
+    </div>
+  </div>
+
+  <style>
+    .avis-card:hover {
+      transform: translateY(-5px);
+    }
+
+    @keyframes fadeInCards {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .avis-card {
+      animation: fadeInCards 1s ease forwards;
+    }
+  </style>
+</section>
+
+
+<!-- Section 6 -->
+<section style="padding:60px 20px;background:#f6f8fc;text-align:center;font-family:'Poppins',sans-serif;">
+  <h2 style="font-size:2rem;font-weight:700;margin-bottom:10px;color:#0b1a2b;">📍 Zone géographique</h2>
+  <p style="font-size:1.1rem;color:#555;margin-bottom:30px;max-width:650px;margin-left:auto;margin-right:auto;">
+    🚦 Basé à <strong>Paris</strong>, disponible sur toute l’Europe :<br>
+    France – Belgique – Suisse – Luxembourg – Monaco
+  </p>
+
+  <div style="display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:30px;max-width:1000px;margin:0 auto;">
+
+ <img src="https://storage.googleapis.com/pod_public/1300/126525.jpg" 
+           alt="Photo vue panoramique de Paris" 
+           style="width:100%;border-radius:20px;box-shadow:0 8px 20px rgba(0,0,0,0.1);animation:floatImg 5s ease-in-out infinite;">
+
+   
+  </div>
+
+  <style>
+    @keyframes floatImg {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+  </style>
+</section>
+
+
+
+
+<!-- Section 7 -->
+<section style="padding:60px 20px;background:#fff4f4;text-align:center;font-family:'Poppins',sans-serif;">
+  <h2 style="font-size:2rem;font-weight:700;margin-bottom:10px;color:#d32f2f;">📩 Contact rapide</h2>
+  <p style="font-size:1.1rem;color:#555;margin-bottom:40px;max-width:600px;margin-left:auto;margin-right:auto;">Finissez vos réservations en un clic ou contactez-nous directement.</p>
+
+  <div style="display:flex;justify-content:center;align-items:center;gap:30px;flex-wrap:wrap; margin-bottom:40px;">
+    <a href="https://wa.me/330600000000" style="background:#25D366;color:#fff;padding:14px 24px;border-radius:12px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:10px;font-size:1rem;">
+      💬 WhatsApp Business
+    </a>
+    <a href="tel:+33600000000" style="background:#0b1a2b;color:#fff;padding:14px 24px;border-radius:12px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:10px;font-size:1rem;">
+      📞 06 XX XX XX XX
+    </a>
+    <a href="mailto:contact@transport.com" style="background:#d32f2f;color:#fff;padding:14px 24px;border-radius:12px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:10px;font-size:1rem;">
+      📧 contact@transport.com
+    </a>
+  </div>
+
+  <div style="margin-top:20px;">
+    <p style="font-size:1rem;color:#555;margin-bottom:10px;">📱 Téléchargez l’application pour réserver dès maintenant :</p>
+    <div style="display:flex;justify-content:center;align-items:center;gap:20px;flex-wrap:wrap;">
+      <a href="#" style="background:#000;color:#fff;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:10px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/App_Store_(iOS)_logo.svg" alt="App Store" width="24">App Store
+      </a>
+      <a href="#" style="background:#34a853;color:#fff;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:10px;">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_FR.svg" alt="Google Play" width="24">Google Play
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- Section 8 -->
