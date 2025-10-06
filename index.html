@@ -1,3 +1,103 @@
+<style>
+  
+    .hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero video,
+    .hero img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.6); /* assombrit pour que le texte ressorte */
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+    }
+
+    .hero-content {
+      z-index: 1;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+
+    .hero p {
+      font-size: 1.5em;
+      margin: 10px 0;
+    }
+
+    .hero .location {
+      font-size: 1.2em;
+      margin-bottom: 20px;
+    }
+
+    .hero .cta-button {
+      background-color: #fff;
+      color: black;
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .hero .cta-button:hover {
+      background-color: #000000;
+      color : #fff;
+    }
+</style>
+
+
+
+
+<header class="hero">
+    <!-- Vidéo de fond 
+    <video autoplay muted loop playsinline>
+      <source src="video-chauffeur-nuit.mp4" type="video/mp4">
+      <!-- Image fallback 
+      <img src="image-chauffeur-nuit.jpg" alt="Chauffeur haut de gamme de nuit">
+    </video>
+    -->
+    
+    <img src="https://www.driver.paris/wp-content/uploads/2024/10/Location-de-vehicule-avec-chauffeur-1-1.webp" 
+           alt="Photo vue panoramique de Paris" 
+           style="width:100%;border-radius:20px;box-shadow:0 8px 20px rgba(0,0,0,0.1);animation:floatImg 5s ease-in-out infinite;">
+
+    <!-- Filtre sombre -->
+    <div class="overlay"></div>
+
+    <!-- Contenu -->
+    <div class="hero-content">
+      <h1>A.E. Transport</h1>
+      <p>Chauffeur privé haut de gamme – 24h/24 & 7j/7</p>
+      <div class="location">Paris • Côte d’Azur • Europe</div>
+      <a href="#" class="cta-button">📱 Réserver sur l’application</a>
+    </div>
+  </header>
+
+
 <!-- Section 1 -->
 <section aria-label="Nos atouts VTC" style="font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; max-width:980px; margin:24px auto; padding:18px; box-sizing:border-box;">
   <style>
