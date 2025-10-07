@@ -4,6 +4,18 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>A.E TRANSPORT</title>
+
+    <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"
+  />
+  <!-- Leaflet Routing Machine CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css"
+  />
+  
 <style>
 
  body{
@@ -185,6 +197,136 @@
       background-color: #000000;
       color : #fff;
     }
+
+
+
+
+
+  /*style réservation*/
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #000;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .container { flex: 1; display: flex; flex-direction: row; }
+    form {
+      background-color: #111;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+    h2 { text-align: center; margin-bottom: 1.5rem; font-weight: normal; color: #fff; }
+    .form-group { margin-bottom: 1.2rem; position: relative; }
+    label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #444;
+      background-color: #000;
+      color: #fff;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    input:focus, select:focus, textarea:focus { border-color: #fff; outline: none; }
+    textarea { resize: vertical; min-height: 80px; }
+    button {
+      width: 100%; padding: 1rem; background-color: #fff; color: #000;
+      font-weight: bold; border: none; border-radius: 5px; cursor: pointer;
+      font-size: 1rem; transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    button:hover { background-color: #ddd; transform: translateY(-2px); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .success-message { text-align: center; padding: 1rem; color: #0f0; display: none; }
+    #map { flex: 1; min-height: 400px; }
+    .info-box {
+      background-color: #222;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .info-box span { display: block; margin: 0.3rem 0; font-size: 1rem; }
+    
+    /*@media (max-width: 768px) {
+      .container { flex-direction: column; }
+      form { max-width: none; margin-bottom: 1rem; }
+      #map { min-height: 300px; }
+    }*/
+    
+    
+    @media (max-width: 768px) {
+  .container {
+    flex-direction: column-reverse; /* Inverse l’ordre → carte en haut, formulaire en bas */
+  }
+  form {
+    max-width: none;
+    margin-top: 1rem;
+  }
+  #map {
+    min-height: 300px;
+  }
+}
+    
+    .toast {
+  visibility: hidden;
+  min-width: 280px;
+  background-color: #16a34a; /* vert succès */
+  color: white;
+  text-align: center;
+  border-radius: 8px;
+  padding: 14px;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  font-size: 15px;
+  opacity: 0;
+  transition: opacity 0.5s, bottom 0.5s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+  bottom: 60px;
+}
+
+    
+    button:disabled {
+  background-color: #666;
+  cursor: not-allowed;
+}
+
+/* Spinner animé */
+.spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid #fff;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+  
 </style>
 
 </head>
@@ -232,6 +374,77 @@
 
 
 <main  style="background:#f8f9fb; margin-top: 65px; margin-bottom: 50px;">
+
+  <div class="container">
+    <form id="vtcForm">
+      <h2>Réservation VTC Privé</h2>
+
+      <div class="form-group">
+        <label for="name">Nom complet</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Adresse Email</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Téléphone</label>
+        <input type="tel" id="phone" name="phone" required />
+      </div>
+
+      <div class="form-group">
+        <label for="pickup">Adresse de départ</label>
+        <input type="text" id="pickup" name="pickup" placeholder="Ex: 10 rue ..." required />
+      </div>
+
+      <div class="form-group">
+        <label for="dropoff">Adresse d’arrivée</label>
+        <input type="text" id="dropoff" name="dropoff" placeholder="Ex: 20 avenue ..." required />
+      </div>
+
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" required />
+      </div>
+
+      <div class="form-group">
+        <label for="time">Heure</label>
+        <input type="time" id="time" name="time" required />
+      </div>
+
+      <div class="form-group">
+        <label for="vehicle">Type de véhicule</label>
+        <select id="vehicle" name="vehicle" required>
+          <option value="">-- Sélectionner --</option>
+          <option value="standard">Standard</option>
+          <option value="berline">Berline Luxe</option>
+          <option value="van">Van 6-7 places</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Message (optionnel)</label>
+        <textarea id="message" name="message" placeholder="Détails utiles…"></textarea>
+      </div>
+
+      <div class="info-box">
+        <span id="distanceInfo">Distance : —</span>
+        <span id="durationInfo">Durée estimée : —</span>
+        <span id="priceInfo">Tarif estimé : —</span>
+      </div>
+
+      <button type="submit" id="submitBtn">Réserver</button>
+      <div class="success-message" id="successMessage">✅ Réservation envoyée avec succès !</div>
+    </form>
+
+    <div id="map"></div>
+    
+    <!-- Toast de confirmation -->
+<div id="toast" class="toast">✅ Votre réservation a été enregistrée avec succès !</div>
+
+  </div>
   
 </main>
 
@@ -248,6 +461,11 @@
 
 </body>
 
+  <!-- Scripts Leaflet + Routing Machine -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+
+
     <script>
     // Script pour le menu burger mobile
     const burger = document.getElementById('burger');
@@ -256,5 +474,171 @@
     burger.addEventListener('click', () => {
       navLinks.classList.toggle('active');
     });
+
+
+let get_distance
+let get_duration 
+let get_price
+
+const scriptURL = "https://script.google.com/macros/s/AKfycbwS-sd_eQlf7lcgB9m4KBrxwcct879abVt_g2A4QwbSCbyz1j9a_90cbRwKFdqUvPfOZg/exec";
+ 
+
+const map = L.map('map').setView([48.8566, 2.3522], 13);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution:'&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
+    }).addTo(map);
+
+    let routingControl = L.Routing.control({
+      waypoints: [],
+      routeWhileDragging: true,
+      show: false,
+      fitSelectedRoute: true,
+      addWaypoints: false
+    }).addTo(map);
+
+    const distanceInfo = document.getElementById('distanceInfo');
+    const durationInfo = document.getElementById('durationInfo');
+    const priceInfo = document.getElementById('priceInfo');
+
+    // Calcul du tarif
+    function calculatePrice(vehicleType, distanceKm, durationMin) {
+      const tarifs = {
+        standard: { base: 2, perKm: 1.2, perMin: 0.3, min: 6 },
+        berline: { base: 5, perKm: 1.8, perMin: 0.45, min: 10 },
+        van: { base: 6, perKm: 2, perMin: 0.5, min: 12 }
+      };
+      const t = tarifs[vehicleType];
+      if (!t) return 0;
+      const price = t.base + distanceKm * t.perKm + durationMin * t.perMin;
+      return Math.max(price, t.min).toFixed(2);
+    }
+
+    async function updateRoute() {
+      const addr1 = document.getElementById('pickup').value;
+      const addr2 = document.getElementById('dropoff').value;
+      if (!addr1 || !addr2) return;
+
+      try {
+        const [geo1, geo2] = await Promise.all([
+          fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(addr1)).then(r=>r.json()),
+          fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(addr2)).then(r=>r.json())
+        ]);
+
+        if (!geo1.length || !geo2.length) return alert("Adresse introuvable.");
+
+        const latlng1 = L.latLng(geo1[0].lat, geo1[0].lon);
+        const latlng2 = L.latLng(geo2[0].lat, geo2[0].lon);
+
+        routingControl.setWaypoints([latlng1, latlng2]);
+
+        routingControl.on('routesfound', function(e) {
+          const route = e.routes[0];
+          const distanceKm = route.summary.totalDistance / 1000;
+          const durationMin = route.summary.totalTime / 60;
+
+          distanceInfo.textContent = `Distance : ${distanceKm.toFixed(2)} km`;
+          durationInfo.textContent = `Durée estimée : ${Math.round(durationMin)} min`;
+          
+          get_distance = distanceKm.toFixed(2)
+          get_duration = Math.round(durationMin)
+
+          const vehicleType = document.getElementById('vehicle').value;
+          if (vehicleType) {
+            const price = calculatePrice(vehicleType, distanceKm, durationMin);
+            get_price = price
+            priceInfo.textContent = `Tarif estimé : ${price} €`;
+          } else {
+            priceInfo.textContent = "Tarif estimé : —";
+          }
+        });
+
+      } catch (err) {
+        console.error("Erreur de géocodage / routing", err);
+      }
+    }
+
+    let debounceTimer;
+    function debounceUpdate() {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(updateRoute, 800);
+    }
+    document.getElementById('pickup').addEventListener('input', debounceUpdate);
+    document.getElementById('dropoff').addEventListener('input', debounceUpdate);
+    document.getElementById('vehicle').addEventListener('change', updateRoute);
+
+    const form = document.getElementById('vtcForm');
+    const successMessage = document.getElementById('successMessage');
+    const submitBtn = document.getElementById('submitBtn');
+
+
+    form.addEventListener('submit', function(e) {
+      
+            
+      e.preventDefault();
+     // successMessage.style.display = 'block';
+      
+      submitBtn.disabled = true;
+      const originalText = submitBtn.textContent;
+      submitBtn.innerHTML = 'Envoi en cours <span class="spinner"></span>';
+      
+      
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const pickup = document.getElementById('pickup').value.trim();
+      const dropoff = document.getElementById('dropoff').value.trim();
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+      const vehicle = document.getElementById('vehicle').value;
+      const message = document.getElementById('message').value.trim();
+      
+    
+      const data = new URLSearchParams();
+            data.append('id', Date.now());
+            data.append('name', name);
+            data.append('email', email);
+            data.append('phone', phone);
+            data.append('pickup', pickup);
+            data.append('dropoff', dropoff);
+            data.append('date', date);
+            data.append('time', time);
+            data.append('vehicle', vehicle);
+            data.append('message', message);
+            data.append('distance', get_distance);
+            data.append('duration', get_duration);
+            data.append('price', get_price);
+      
+      
+       fetch(scriptURL, { method: 'POST', body: data, mode: 'no-cors' })
+    .then(() => {
+         showToast("✅ Votre réservation a été enregistrée !");
+         
+         submitBtn.disabled = false;
+    submitBtn.textContent = originalText;
+         
+      //successMessage.style.display = 'block';
+      form.reset();
+      routingControl.setWaypoints([]);
+      distanceInfo.textContent = "Distance : —";
+      durationInfo.textContent = "Durée estimée : —";
+      priceInfo.textContent = "Tarif estimé : —";
+      setTimeout(() => successMessage.style.display = 'none', 4000);
+    })
+    .catch(err => console.error('Erreur lors de l’envoi vers Google Sheet :', err));
+      
+     
+    });
+
+
+// Fonction pour afficher le toast
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 4000);
+}
+
+
+      
   </script>
 </html>
