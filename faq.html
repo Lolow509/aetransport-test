@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A.E TRANSPORT</title>
+<style>
+
+ body{
+  margin : auto;
+ }
+  
+    header {
+      background-color: #111;
+      color: white;
+      padding-top: 10px;
+      padding-left: 20px;
+      padding-right: 20px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+     align-items: center;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #e91e63;
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .burger div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+    /* #reserveLink{
+      background: #ffffff;
+      color: #FF5722;
+      padding: 10px 20px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:600;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      width: 70px;
+     }*/
+     
+      .nav-links {
+        position: absolute;
+        top: 30px;
+        right: 0;
+        background-color: #111;
+        flex-direction: column;
+        width: 100%;
+        display: none;
+        align-items: flex-start;
+      }
+
+      .nav-links.active {
+        display: flex;
+       padding-top: 20px;
+       margin-right: -30px;
+      }
+
+      .burger {
+        display: flex;
+      }
+
+
+     header {
+          padding-bottom: 10px;
+     }
+     
+    }
+
+    .main {
+      padding-top: 70px; /* pour ne pas cacher le contenu sous la nav fixe */
+    }
+
+  
+    .hero {
+      position: relative;
+      height: 30vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+    }
+
+    .hero video,
+    .hero img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.6); /* assombrit pour que le texte ressorte */
+      border-radius: 20px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+    }
+
+    .hero-content {
+      z-index: 1;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+
+    .hero p {
+      font-size: 15px;
+      margin: 10px 0;
+    }
+
+    .hero .location {
+      font-size: 15px;
+      margin-bottom: 40px;
+    }
+
+    .hero .cta-button {
+      background-color: #fff;
+      color: black;
+      padding: 10px 15px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .hero .cta-button:hover {
+      background-color: #000000;
+      color : #fff;
+    }
+</style>
+
+</head>
+
+
+<body>
+
+  
+ <header>
+    <div class="navbar">
+      <div class="logo">A.E TRANSPORT</div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#accueil">Accueil</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a id="reserveLink" href="#reservation" style="background: #ffffff;color: #FF5722;padding: 10px 20px;border-radius:10px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:10px;width: 70px;">Réserver</a></li>
+      </ul>
+      <div class="burger" id="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- Texte header -->
+<div class="hero"> 
+    <img src="https://storage.googleapis.com/pod_public/1300/126525.jpg" 
+           alt="Photo vue panoramique de Paris" 
+           style="width:100%;border-radius:20px;box-shadow:0 8px 20px rgba(0,0,0,0.1);animation:floatImg 5s ease-in-out infinite;">
+
+    <!-- Filtre sombre -->
+    <div class="overlay"></div>
+
+    <!-- Contenu -->
+    <div class="hero-content">
+      <h1>Foire aux questions (FAQ)</h1>
+    </div>
+  </div>
+ <!-- Fin texte header -->
+
+
+
+<main  style="background:#f8f9fb;">
+
+    <section style="font-family:'Poppins',sans-serif; padding-left:50px; padding-right:50px; max-width:900px;margin:auto;background:#f8f9fb;">
+  
+  <div class="faq-container" style="background:#fff;border-radius:16px;box-shadow:0 6px 20px rgba(0,0,0,0.08);overflow:hidden;">
+    
+    <!-- Modèle de question -->
+    <details style="border-bottom:1px solid #eee;padding:20px;">
+      <summary style="font-size:1.1rem;font-weight:600;cursor:pointer;">🕐 1. Quels sont vos horaires de service ?</summary>
+      <p style="margin-top:10px;margin-left:60px; color:#444;">Nous sommes disponibles 7j/7, de jour comme de nuit, sur réservation.<br>Pour toute demande urgente, un contact direct est possible via téléphone ou WhatsApp.</p>
+    </details>
+
+    <details style="border-bottom:1px solid #eee;padding:20px;">
+      <summary style="font-size:1.1rem;font-weight:600;cursor:pointer;">📍 2. Dans quelles zones intervenez-vous ?</summary>
+      <p style="margin-top:10px; margin-left:60px; color:#444;">Nous assurons vos trajets partout en Île-de-France, mais aussi toutes distances en Europe sur demande (Belgique, Suisse, Luxembourg, etc.).</p>
+    </details>
+
+    <details style="border-bottom:1px solid #eee;padding:20px;">
+      <summary style="font-size:1.1rem;font-weight:600;cursor:pointer;">💳 3. Quels moyens de paiement acceptez-vous ?</summary>
+      <p style="margin-top:10px; margin-left:60px; color:#444;">
+        Nous acceptons :<br>
+        • Espèces 💶<br>
+        • Carte bancaire 💳<br>
+        • Apple Pay / Google Pay 📱<br>
+        • Virement (sur demande préalable)<br>
+        • Crypto 💠
+      </p>
+    </details>
+
+    <details style="border-bottom:1px solid #eee;padding:20px;">
+      <summary style="font-size:1.1rem;font-weight:600;cursor:pointer;">🚘 4. Quel type de véhicule utilisez-vous ?</summary>
+      <p style="margin-top:10px; margin-left:60px; color:#444;">Nous utilisons un véhicule haut de gamme, confortable et spacieux, parfaitement entretenu, climatisé et équipé pour garantir votre sécurité et votre confort.</p>
+    </details>
+
+    <details style="border-bottom:1px solid #eee;padding:20px;">
+      <summary style="font-size:1.1rem;font-weight:600;cursor:pointer;">⏱️ 5. Comment réserver une course ?</summary>
+      <p style="margin-top:10px; margin-left:60px; color:#444;">
+        Vous pouvez réserver :<br>
+        • Directement sur le site via le formulaire de réservation<br>
+        • Par téléphone ou WhatsApp<br>
+        • Ou par email via notre page Contact
+      </p>
+    </details>
+
+    <details style="border-bottom:1px solid #eee;padding:20px;">
+      <summary style="font-size:1.1rem;font-weight:600;cursor:pointer;">💼 6. Proposez-vous un service professionnel ?</summary>
+      <p style="margin-top:10px; margin-left:60px; color:#444;">
+        Oui, nous proposons :<br>
+        • Transferts aéroport / gare / hôtel<br>
+        • Mise à disposition à l’heure ou à la journée<br>
+        • Transports professionnels pour vos collaborateurs ou clients
+      </p>
+    </details>
+
+    <details style="border-bottom:1px solid #eee;padding:20px;">
+      <summary style="font-size:1.1rem;font-weight:600;cursor:pointer;">🧳 7. Puis-je réserver à l’avance ?</summary>
+      <p style="margin-top:10px; margin-left:60px; color:#444;">Bien sûr ! Nous vous recommandons de réserver au moins 12h à l’avance pour garantir la disponibilité du chauffeur.</p>
+    </details>
+
+    <details style="border-bottom:1px solid #eee;padding:20px;">
+      <summary style="font-size:1.1rem;font-weight:600;cursor:pointer;">✈️ 8. Faites-vous les transferts aéroport et gare ?</summary>
+      <p style="margin-top:10px; margin-left:60px; color:#444;">Oui, nous assurons les trajets vers tous les aéroports (Orly, Roissy CDG, Beauvais) et gares parisiennes, avec suivi en temps réel de votre vol/train.</p>
+    </details>
+
+    <details style="border-bottom:1px solid #eee;padding:20px;">
+      <summary style="font-size:1.1rem;font-weight:600;cursor:pointer;">⏰ 9. Que se passe-t-il si mon vol ou train est en retard ?</summary>
+      <p style="margin-top:10px; margin-left:60px; color:#444;">Aucun souci : nous suivons votre vol/train en temps réel.<br>Votre chauffeur ajustera automatiquement son arrivée sans frais supplémentaires.</p>
+    </details>
+
+    <details style="border-bottom:1px solid #eee;padding:20px;">
+      <summary style="font-size:1.1rem;font-weight:600;cursor:pointer;">💺 10. Combien de personnes peuvent voyager ?</summary>
+      <p style="margin-top:10px; margin-left:60px; color:#444;">Nos véhicules peuvent accueillir jusqu’à 4 passagers avec bagages.<br>Pour les groupes plus nombreux, un véhicule adapté peut être prévu sur demande.</p>
+    </details>
+
+    <details style="border-bottom:1px solid #eee;padding:20px;">
+      <summary style="font-size:1.1rem;font-weight:600;cursor:pointer;">🧴 11. Y a-t-il des services à bord ?</summary>
+      <p style="margin-top:10px; margin-left:60px; color:#444;">
+        Oui, selon le véhicule et la formule choisie, vous profitez de :<br>
+        • Bouteilles d’eau<br>
+        • Chargeurs de téléphone<br>
+        • Musique personnalisée<br>
+        • Lingettes ou bonbons à disposition
+      </p>
+    </details>
+
+    <details style="border-bottom:1px solid #eee;padding:20px;">
+      <summary style="font-size:1.1rem;font-weight:600;cursor:pointer;">🕊️ 12. Comment annuler une réservation ?</summary>
+      <p style="margin-top:10px; margin-left:60px; color:#444;">Vous pouvez annuler jusqu’à 2 heures avant le départ sans frais.<br>Passé ce délai, des frais d’annulation peuvent s’appliquer selon la distance.</p>
+    </details>
+
+    <details style="padding:20px;">
+      <summary style="font-size:1.1rem;font-weight:600;cursor:pointer;">🔒 13. Mes informations sont-elles sécurisées ?</summary>
+      <p style="margin-top:10px; margin-left:60px; color:#444;">Oui, toutes les données sont cryptées et protégées.<br>Nous respectons la législation RGPD pour garantir la confidentialité de nos clients.</p>
+    </details>
+  </div>
+
+  <style>
+    details summary::-webkit-details-marker {
+      display:none;
+    }
+    details summary::after {
+      content:'';
+      float:right;
+      transition:transform 0.3s ease;
+    }
+    details[open] summary::after {
+      content:'';
+      transform:rotate(180deg);
+    }
+    details p {
+      animation:fadeIn 0.3s ease;
+    }
+    @keyframes fadeIn {
+      from {opacity:0;transform:translateY(-5px);}
+      to {opacity:1;transform:translateY(0);}
+    }
+  </style>
+</section>
+
+
+
+  
+</main>
+
+<!-- Section 8 -->
+
+<footer style="padding:20px 10px;background:#0b1a2b;color:#fff;text-align:center;font-family:'Poppins',sans-serif;">
+  <p style="margin:5px 0; font-size:0.9rem;">© 2025 A.E TRANSPORT – Chauffeur privé haut de gamme</p>
+  <p style="margin:5px 0; font-size:0.9rem;">
+    <a href="#" style="color:#fff;text-decoration:none;margin:0 8px;">Mentions légales</a>|
+    <a href="#" style="color:#fff;text-decoration:none;margin:0 8px;">Politique de confidentialité</a>|
+    <a href="https://www.instagram.com/" target="_blank" style="color:#fff;text-decoration:none;margin:0 8px;">Instagram</a>
+  </p>
+</footer>
+
+</body>
+
+    <script>
+    // Script pour le menu burger mobile
+    const burger = document.getElementById('burger');
+    const navLinks = document.getElementById('nav-links');
+
+    burger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</html>
