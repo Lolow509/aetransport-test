@@ -39,6 +39,7 @@
       list-style: none;
       display: flex;
       gap: 20px;
+     align-items: center;
     }
 
     .nav-links a {
@@ -67,18 +68,34 @@
 
     /* Responsive */
     @media (max-width: 768px) {
+    /* #reserveLink{
+      background: #ffffff;
+      color: #FF5722;
+      padding: 10px 20px;
+      border-radius:10px;
+      text-decoration:none;
+      font-weight:600;
+      display:flex;
+      align-items:center;
+      gap:10px;
+      width: 70px;
+     }*/
+     
       .nav-links {
         position: absolute;
-        top: 60px;
+        top: 30px;
         right: 0;
         background-color: #111;
         flex-direction: column;
         width: 100%;
         display: none;
+        align-items: flex-start;
       }
 
       .nav-links.active {
         display: flex;
+       padding-top: 20px;
+       margin-right: -30px;
       }
 
       .burger {
@@ -122,6 +139,7 @@
 
     .overlay {
       background: rgba(0, 0, 0, 0.6); /* assombrit pour que le texte ressorte */
+      border-radius: 20px;
       position: absolute;
       top: 0;
       left: 0;
@@ -176,13 +194,13 @@
   
  <header>
     <div class="navbar">
-      <div class="logo">A.E. Transport</div>
+      <div class="logo">A.E TRANSPORT</div>
       <ul class="nav-links" id="nav-links">
         <li><a href="#accueil">Accueil</a></li>
         <li><a href="#services">Services</a></li>
         <li><a href="#destinations">Destinations</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="#reservation">📱 Réserver</a></li>
+        <li><a id="reserveLink" href="#reservation" style="background: #ffffff;color: #FF5722;padding: 10px 20px;border-radius:10px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:10px;width: 70px;">Réserver</a></li>
       </ul>
       <div class="burger" id="burger">
         <div></div>
@@ -204,7 +222,7 @@
 
     <!-- Contenu -->
     <div class="hero-content">
-      <h1>A.E. Transport</h1>
+      <h1>A.E TRANSPORTt</h1>
       <p>Chauffeur privé haut de gamme – 24h/24 & 7j/7</p>
       <div class="location">Paris • Côte d’Azur • Europe</div>
       <a href="#" class="cta-button">Réserver sur l’application</a>
@@ -594,11 +612,11 @@
 <!-- Section 8 -->
 
 <footer style="padding:20px 10px;background:#0b1a2b;color:#fff;text-align:center;font-family:'Poppins',sans-serif;">
-  <p style="margin:5px 0; font-size:0.9rem;">© 2025 AE.Transport – Chauffeur privé haut de gamme</p>
+  <p style="margin:5px 0; font-size:0.9rem;">© 2025 A.E TRANSPORT – Chauffeur privé haut de gamme</p>
   <p style="margin:5px 0; font-size:0.9rem;">
-    <a href="#" style="color:#fff;text-decoration:underline;margin:0 8px;">Mentions légales</a>|
-    <a href="#" style="color:#fff;text-decoration:underline;margin:0 8px;">Politique de confidentialité</a>|
-    <a href="https://www.instagram.com/" target="_blank" style="color:#fff;text-decoration:underline;margin:0 8px;">Instagram</a>
+    <a href="#" style="color:#fff;text-decoration:none;margin:0 8px;">Mentions légales</a>|
+    <a href="#" style="color:#fff;text-decoration:none;margin:0 8px;">Politique de confidentialité</a>|
+    <a href="https://www.instagram.com/" target="_blank" style="color:#fff;text-decoration:none;margin:0 8px;">Instagram</a>
   </p>
 </footer>
 
