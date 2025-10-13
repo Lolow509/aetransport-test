@@ -654,6 +654,85 @@ function showToast(message) {
 }
 
 
+
+      // ==========================
+// AUTOCOMPLÉTION ADRESSES
+// ==========================
+function setupAddressAutocomplete(inputId) {
+  const input = document.getElementById(inputId);
+  const suggestionBox = document.createElement("div");
+  suggestionBox.style.position = "absolute";
+  suggestionBox.style.background = "#fff";
+  suggestionBox.style.border = "1px solid #ccc";
+  suggestionBox.style.borderRadius = "5px";
+  suggestionBox.style.zIndex = "1000";
+  suggestionBox.style.width = "100%";
+  suggestionBox.style.maxHeight = "180px";
+  suggestionBox.style.overflowY = "auto";
+  suggestionBox.style.display = "none";
+  input.parentNode.appendChild(suggestionBox);
+
+  let debounceTimer;
+
+  input.addEventListener("input", function () {
+    clearTimeout(debounceTimer);
+    const query = input.value.trim();
+    if (query.length < 3) {
+      suggestionBox.style.display = "none";
+      return;
+    }
+
+    debounceTimer = setTimeout(async () => {
+      try {
+        const res = await fetch(
+          `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=5&countrycodes=fr&q=${encodeURIComponent(
+            query
+          )}`
+        );
+        const data = await res.json();
+        suggestionBox.innerHTML = "";
+
+        if (data.length === 0) {
+          suggestionBox.style.display = "none";
+          return;
+        }
+
+        data.forEach((place) => {
+          const item = document.createElement("div");
+          item.textContent = place.display_name;
+          item.style.padding = "8px";
+          item.style.cursor = "pointer";
+          item.style.fontSize = "0.9rem";
+          item.addEventListener("mouseenter", () => (item.style.background = "#f0f0f0"));
+          item.addEventListener("mouseleave", () => (item.style.background = "#fff"));
+          item.addEventListener("click", () => {
+            input.value = place.display_name;
+            suggestionBox.style.display = "none";
+            updateRoute();
+          });
+          suggestionBox.appendChild(item);
+        });
+
+        suggestionBox.style.display = "block";
+      } catch (err) {
+        console.error("Erreur d’autocomplétion :", err);
+      }
+    }, 400);
+  });
+
+  document.addEventListener("click", function (e) {
+    if (!suggestionBox.contains(e.target) && e.target !== input) {
+      suggestionBox.style.display = "none";
+    }
+  });
+}
+
+// Activer l’autocomplétion sur les deux champs
+setupAddressAutocomplete("pickup");
+setupAddressAutocomplete("dropoff");
+
+
+
       
   </script>
 </html>
