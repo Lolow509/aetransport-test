@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A.E TRANSPORT</title>
+<style>
+
+ body{
+  margin : auto;
+   background-color: #f8f9fb;
+ }
+  
+    header {
+      background-color: #111;
+      color: white;
+      padding-top: 10px;
+      /*padding-left: 20px;
+      padding-right: 20px;*/
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      align-items: center;
+      display: flex; 
+      gap: 20px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+     align-items: center;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #e91e63;
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .burger div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+       margin-top: 70px !important;
+     }
+      
+    .hero h1{
+      font-size: xx-large !important;
+     }
+     
+      .nav-links {
+        position: absolute;
+        top: 30px;
+        right: 0;
+        background-color: #111;
+        flex-direction: column;
+        width: 100%;
+        display: none;
+        align-items: flex-start;
+      }
+
+      .nav-links.active {
+        display: flex;
+        padding-top: 20px;
+        margin-right: -30px;
+        height: 210px;
+        margin-top: 30px;
+      }
+
+      .burger {
+        display: flex;
+      }
+
+
+     header {
+          padding-bottom: 10px;
+     }
+
+      details p {
+        margin-left: 10px !important;
+      }
+     
+    }
+
+    .main {
+      padding-top: 70px; /* pour ne pas cacher le contenu sous la nav fixe */
+    }
+
+  
+    .hero {
+      position: relative;
+      height: 15vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      margin-top: 65px;
+    }
+
+    .hero video,
+    .hero img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.6); /* assombrit pour que le texte ressorte */
+      /*border-radius: 20px;*/
+      border-bottom-right-radius : 20px;
+      border-bottom-left-radius :20px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+    }
+
+    .hero-content {
+      z-index: 1;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+
+    .hero p {
+      font-size: 15px;
+      margin: 10px 0;
+    }
+
+    .hero .location {
+      font-size: 15px;
+      margin-bottom: 40px;
+    }
+
+    .hero .cta-button {
+      background-color: #fff;
+      color: black;
+      padding: 10px 15px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .hero .cta-button:hover {
+      background-color: #000000;
+      color : #fff;
+    }
+</style>
+
+</head>
+
+
+<body>
+
+  
+ <header>
+    <div class="navbar">
+      <div class="logo" onclick="location.href='/aetransport-test' " >
+       <img id="logoHead" src="/aetransport-test/-5981017327669462784_120-removebg-preview.png" style="width: 50px;">
+       A.E TRANSPORT
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/aetransport-test/services.html">Services</a></li>
+        <li><a href="/aetransport-test/faq.html">A propos</a></li>
+        <li><a href="/aetransport-test/faq.html">Notre flotte</a></li>
+        <li><a href="/aetransport-test/faq.html">FAQ</a></li>
+        <li><a href="/aetransport-test/#contact">Contact</a></li>
+        <li><a id="reserveLink" href="/aetransport-test/reservation.html" style="background: #ffffff;color: #FF5722;padding: 10px 20px;border-radius:10px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:10px;width: 70px;">Réserver</a></li>
+      </ul>
+      <div class="burger" id="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- Texte header -->
+<div class="hero"> 
+    <img src="https://storage.googleapis.com/pod_public/1300/126525.jpg" 
+           alt="Photo vue panoramique de Paris" 
+           style="width:100%;border-bottom-right-radius : 20px; border-bottom-left-radius :20px ;box-shadow:0 8px 20px rgba(0,0,0,0.1);animation:floatImg 5s ease-in-out infinite;">
+
+    <!-- Filtre sombre -->
+    <div class="overlay"></div>
+
+    <!-- Contenu -->
+    <div class="hero-content">
+      <h1>A Propos de nous</h1>
+    </div>
+  </div>
+ <!-- Fin texte header -->
+
+
+
+<main  style="background:#f8f9fb; margin-top: 65px; margin-bottom: 50px;">
+
+
+ <!-- Section 1 -->
+  <section class="apropos-section fade-in">
+    <div class="apropos-img">
+      <img src="https://www.auto-actu.org/wp-content/uploads/vtc-chauff-1170x700.jpg" alt="Chauffeur professionnel">
+    </div>
+    <div class="apropos-text">
+      <h2>Les chauffeurs de notre service haut de gamme</h2>
+      <p>
+        Un véhicule d’exception ne vaut que par l’excellence de son chauffeur.  
+        Chez <strong>A.E Transport</strong>, nos chauffeurs sont sélectionnés selon des critères rigoureux : discrétion, ponctualité et savoir-être irréprochable.  
+        Véritables professionnels du transport, ils assurent vos déplacements avec un service soigné, discret et une attention constante à votre confort.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 2 -->
+  <section class="apropos-section fade-in">
+    <div class="apropos-img">
+      <img src="https://www.allcarz.ru/wp-content/uploads/2021/05/foto-maybach-s680_04.jpg" alt="Confort haut de gamme">
+    </div>
+    <div class="apropos-text">
+      <h2>Confort moderne pour une expérience de première classe</h2>
+      <p>
+        Nous ne nous contentons pas de vous transporter, nous vous offrons une expérience de voyage haut de gamme.  
+        Nos véhicules sont équipés des dernières technologies pour garantir un confort absolu : Wi-Fi, rafraîchissements, climatisation, ambiance calme.  
+        Que ce soit pour un transfert aéroport, un trajet professionnel ou un déplacement longue distance, <strong>A.E Transport</strong> vous assure un voyage d’exception.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 3 -->
+  <section class="apropos-section fade-in">
+    <div class="apropos-img">
+      <img src="https://munich-chauffeur-service.de/wp-content/uploads/2023/11/Services4-1.jpg" alt="Service premium">
+    </div>
+    <div class="apropos-text">
+      <h2>Des ambassadeurs du luxe et de l’art de voyager</h2>
+      <p>
+        Nos chauffeurs sont bien plus que des conducteurs : ce sont de véritables ambassadeurs du luxe et de l’art du voyage.  
+        <br><br>
+        • Ponctualité absolue  
+        • Discrétion et confidentialité garanties  
+        • Maîtrise parfaite de Paris et de ses environs  
+        • Accueil multilingue (français, anglais, sur demande)  
+        <br><br>
+        A.E Transport, c’est un service conçu pour ceux qui exigent l’excellence à chaque instant.
+      </p>
+    </div>
+  </section>
+
+
+
+
+
+</main>
+
+<!-- Section 8 -->
+
+<footer style="padding:20px 10px;background:#0b1a2b;color:#fff;text-align:center;font-family:'Poppins',sans-serif;">
+  <p style="margin:5px 0; font-size:0.9rem;">© 2025 A.E TRANSPORT – Chauffeur privé haut de gamme</p>
+  <p style="margin:5px 0; font-size:0.9rem;">
+    <a href="#" style="color:#fff;text-decoration:none;margin:0 8px;">Mentions légales</a>|
+    <a href="#" style="color:#fff;text-decoration:none;margin:0 8px;">Politique de confidentialité</a>|
+    <a href="https://www.instagram.com/" target="_blank" style="color:#fff;text-decoration:none;margin:0 8px;">Instagram</a>
+  </p>
+</footer>
+
+</body>
+
+    <script>
+    // Script pour le menu burger mobile
+    const burger = document.getElementById('burger');
+    const navLinks = document.getElementById('nav-links');
+
+    burger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+
+<script>
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    fadeEls.forEach(el => observer.observe(el));
+  </script>
+</html>
