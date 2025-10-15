@@ -128,8 +128,7 @@
         margin-left: 10px !important;
       }
      
-    }
-
+    
     .main {
       padding-top: 70px; /* pour ne pas cacher le contenu sous la nav fixe */
     }
@@ -659,8 +658,8 @@ function showToast(message) {
 // AUTOCOMPLÉTION ADRESSES
 // ==========================
 function setupAddressAutocomplete(inputId) {
-  const input = document.getElementById(inputId);
-  const suggestionBox = document.createElement("div");
+  let input = document.getElementById(inputId);
+  let suggestionBox = document.createElement("div");
   suggestionBox.style.position = "absolute";
   suggestionBox.style.background = "#fff";
   suggestionBox.style.border = "1px solid #ccc";
@@ -676,7 +675,7 @@ function setupAddressAutocomplete(inputId) {
 
   input.addEventListener("input", function () {
     clearTimeout(debounceTimer);
-    const query = input.value.trim();
+    let query = input.value.trim();
     if (query.length < 3) {
       suggestionBox.style.display = "none";
       return;
@@ -684,12 +683,12 @@ function setupAddressAutocomplete(inputId) {
 
     debounceTimer = setTimeout(async () => {
       try {
-        const res = await fetch(
+        let res = await fetch(
           `https://nominatim.openstreetmap.org/search?format=json&addressdetails=1&limit=5&countrycodes=fr&q=${encodeURIComponent(
             query
           )}`
         );
-        const data = await res.json();
+        let data = await res.json();
         suggestionBox.innerHTML = "";
 
         if (data.length === 0) {
@@ -698,11 +697,13 @@ function setupAddressAutocomplete(inputId) {
         }
 
         data.forEach((place) => {
-          const item = document.createElement("div");
+          let item = document.createElement("div");
+         
           item.textContent = place.display_name;
           item.style.padding = "8px";
           item.style.cursor = "pointer";
           item.style.fontSize = "0.9rem";
+          item.style.color = "gray";
           item.addEventListener("mouseenter", () => (item.style.background = "#f0f0f0"));
           item.addEventListener("mouseleave", () => (item.style.background = "#fff"));
           item.addEventListener("click", () => {
