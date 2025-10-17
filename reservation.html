@@ -699,6 +699,8 @@ function setupAddressAutocomplete(inputId) {
 
         data.forEach((place) => {
           let item = document.createElement("div");
+
+          console.log(place)
          
           item.textContent = place.display_name;
           item.style.padding = "8px";
