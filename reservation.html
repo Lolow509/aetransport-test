@@ -704,8 +704,7 @@ function setupAddressAutocomplete(inputId) {
          
           /*item.textContent = place.display_name;*/
 
-          item.textContent = ‘${place.address.housse_number } ${place.address.road } ${place.address.postcode } ${place.address.town }, ${place.address.county } ${place.address.country }  ‘;
-
+          item.textContent = `${place.address.housse_number } ${place.address.road } ${place.address.postcode } ${place.address.town }, ${place.address.county } ${place.address.country }`;
           
           item.style.padding = "8px";
           item.style.cursor = "pointer";
