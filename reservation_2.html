@@ -1,0 +1,823 @@
+
+<style>
+    .leaflet-control-container{
+    display:none !important;
+  }
+
+ body{
+  margin : auto;
+ }
+  
+    header {
+      background-color: #111;
+      color: white;
+      padding-top: 10px;
+      /*padding-left: 20px;
+      padding-right: 20px;*/
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      align-items: center;
+      display: flex; 
+      gap: 20px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+     align-items: center;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #e91e63;
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .burger div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+       margin-top: 60px !important;
+     }
+      
+    .hero h1{
+      font-size: xx-large !important;
+     }
+     
+      .nav-links {
+        position: absolute;
+        top: 30px;
+        right: 0;
+        background-color: #111;
+        flex-direction: column;
+        width: 100%;
+        display: none;
+        align-items: flex-start;
+      }
+
+      .nav-links.active {
+        display: flex;
+       padding-top: 20px;
+       /*margin-right: -30px;*/
+       height: 230px;
+        padding-left: 20px;
+        margin-top: 15px;
+      }
+
+      .burger {
+        display: flex;
+      }
+
+
+     header {
+          padding-bottom: 10px;
+     }
+
+      details p {
+        margin-left: 10px !important;
+      }
+    }
+    
+    .main {
+      padding-top: 70px; /* pour ne pas cacher le contenu sous la nav fixe */
+    }
+
+  
+    .hero {
+      position: relative;
+      height: 15vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      margin-top: 60px;
+    }
+
+    .hero video,
+    .hero img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+      border-bottom-right-radius : 20px;
+      border-bottom-left-radius :20px;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.6); /* assombrit pour que le texte ressorte */
+      /*border-radius: 20px;*/
+      border-bottom-right-radius : 20px;
+      border-bottom-left-radius :20px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+    }
+
+    .hero-content {
+      z-index: 1;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+
+    .hero p {
+      font-size: 15px;
+      margin: 10px 0;
+    }
+
+    .hero .location {
+      font-size: 15px;
+      margin-bottom: 40px;
+    }
+
+    .hero .cta-button {
+      background-color: #fff;
+      color: black;
+      padding: 10px 15px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .hero .cta-button:hover {
+      background-color: #000000;
+      color : #fff;
+    }
+
+
+
+
+
+  /*style réservation*/
+    * { /*margin: 0; padding: 0;*/ box-sizing: border-box; }
+    body {
+      /*font-family: 'Segoe UI', sans-serif;*/
+      background-color: #f8f9fb;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+    .container { flex: 1; display: flex; flex-direction: row; }
+    form {
+      background-color: #111;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 400px;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      animation: fadeIn 1s ease-in-out;
+    }
+    h2 { text-align: center; margin-bottom: 1.5rem; font-weight: normal; color: #fff; }
+    .form-group { margin-bottom: 1.2rem; position: relative; }
+    label { display: block; margin-bottom: 0.5rem; font-weight: 500; }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid #444;
+      background-color: #000;
+      color: #fff;
+      border-radius: 5px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    input:focus, select:focus, textarea:focus { border-color: #fff; outline: none; }
+    textarea { resize: vertical; min-height: 80px; }
+    button {
+      width: 100%; padding: 1rem; background-color: #fff; color: #000;
+      font-weight: bold; border: none; border-radius: 5px; cursor: pointer;
+      font-size: 1rem; transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+    button:hover { background-color: #ddd; transform: translateY(-2px); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    .success-message { text-align: center; padding: 1rem; color: #0f0; display: none; }
+    #map { flex: 1; min-height: 400px; }
+    .info-box {
+      background-color: #222;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      text-align: center;
+    }
+    .info-box span { display: block; margin: 0.3rem 0; font-size: 1rem; }
+    
+    /*@media (max-width: 768px) {
+      .container { flex-direction: column; }
+      form { max-width: none; margin-bottom: 1rem; }
+      #map { min-height: 300px; }
+    }*/
+    
+    
+    @media (max-width: 768px) {
+  .container {
+    flex-direction: column-reverse; /* Inverse l’ordre → carte en haut, formulaire en bas */
+  }
+  form {
+    max-width: none;
+    margin-top: 1rem;
+  }
+  #map {
+    min-height: 300px;
+  }
+      
+
+}
+    
+    .toast {
+  visibility: hidden;
+  min-width: 280px;
+  background-color: #16a34a; /* vert succès */
+  color: white;
+  text-align: center;
+  border-radius: 8px;
+  padding: 14px;
+  position: fixed;
+  z-index: 1000;
+  left: 50%;
+  bottom: 40px;
+  transform: translateX(-50%);
+  font-size: 15px;
+  opacity: 0;
+  transition: opacity 0.5s, bottom 0.5s;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+  bottom: 60px;
+}
+
+    
+    button:disabled {
+  background-color: #666;
+  cursor: not-allowed;
+}
+
+/* Spinner animé */
+.spinner {
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid #fff;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 10px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+/** new poubelle **/
+.number-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  overflow: hidden;
+  /*width: 180px;*/
+  transition: border-color 0.3s ease;
+}
+
+.number-input:hover {
+  border-color: #FF5722;
+}
+
+.number-input button {
+  /*background: #FF5722;*/
+  color: black;
+  border: none;
+  /*width: 40px;
+  height: 40px;*/
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+/*
+.number-input button:hover {
+  background: #e64a19;
+}
+*/
+
+.number-input input {
+  width: 60px;
+  height: 40px;
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  outline: none;
+  color: #333;
+  background: transparent;
+}
+
+
+/* Supprime les flèches sur Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Supprime les flèches sur Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+
+@media (max-width: 480px) {
+  .number-input {
+    width: 140px;
+  }
+  .number-input button {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+  .number-input input {
+    width: 50px;
+    height: 35px;
+    font-size: 15px;
+  }
+
+}
+
+.input-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
+  gap: 20px; /* espace entre les champs */
+  margin-bottom: 20px;
+}
+
+.input-row .form-group {
+  flex: 1; /* chaque champ prend la même largeur */
+}</style>
+
+
+
+
+
+<!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+  <!-- Leaflet Routing Machine CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css"/>
+  
+
+
+<main  style="background:#f8f9fb; margin-top: 10px; margin-bottom: 50px;">
+
+  <div class="container" style="height: 100vh;">
+    <form id="vtcForm">
+      <h2>Réservation VTC Privé</h2>
+
+      <!-- section 1 -->
+      <div id="step_1" class="step_all">
+      <div class="form-group">
+        <label for="name">Nom complet</label>
+        <input placeholder="Martin Dupont" type="text" id="name" name="name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Adresse Email</label>
+        <input placeholder="hellot@exemple.com" type="email" id="email" name="email" required />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Téléphone</label>
+        <input placeholder="+33 6 06 06 06 06" type="tel" id="phone" name="phone" required />
+      </div>
+      </div>
+
+      
+      <!-- section 2 -->
+      <div id="step_2" class="step_all">
+      <div class="form-group">
+        <label for="pickup">Adresse de départ</label>
+        <input type="text" id="pickup" name="pickup" placeholder="Ex: 10 rue ..." required />
+      </div>
+
+      <div class="form-group">
+        <label for="dropoff">Adresse d’arrivée</label>
+        <input type="text" id="dropoff" name="dropoff" placeholder="Ex: 20 avenue ..." required />
+      </div>
+
+      <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" id="date" name="date" required />
+      </div>
+
+      <div class="form-group">
+        <label for="time">Heure</label>
+        <input type="time" id="time" name="time" required />
+      </div>
+        </div>
+      
+      
+      
+      <!-- section 3 -->
+      <div id="step_3" class="step_all">
+      <div class="form-group">
+        <label for="vehicle">Type de véhicule</label>
+        <select id="vehicle" name="vehicle" required>
+          <option value="">-- Sélectionner --</option>
+          <option value="standard">Standard</option>
+          <option value="berline">Berline Luxe</option>
+          <option value="van">Van 6-7 places</option>
+        </select>
+      </div>
+      
+      <div id="number-input" class="input-row">
+       <div class="form-group">
+          <label for="passengers">Nombre de passagers</label>
+          <div class="number-input">
+            <button type="button" class="decrement">−</button>
+            <input type="number" id="passengers" name="passengers" value="1" min="1" max="7" required>
+            <button type="button" class="increment">+</button>
+          </div>
+        </div>
+
+      
+      <div class="form-group">
+    <label for="bagages">Nombre de bagages</label>
+    <div class="number-input">
+      <button type="button" class="decrement">−</button>
+      <input type="number" id="bagages" name="bagages" value="0" min="0" max="10">
+      <button type="button" class="increment">+</button>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="rehausseurs">Nombre de réhausseurs</label>
+    <div class="number-input">
+      <button type="button" class="decrement">−</button>
+      <input type="number" id="rehausseurs" name="rehausseurs" value="0" min="0" max="3">
+      <button type="button" class="increment">+</button>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="eau">Bouteilles d’eau</label>
+    <div class="number-input">
+      <button type="button" class="decrement">−</button>
+      <input type="number" id="eau" name="eau" value="0" min="0" max="5">
+      <button type="button" class="increment">+</button>
+    </div>
+  </div>
+      
+      </div>
+      
+      
+      
+      
+
+      <div class="form-group">
+        <label for="message">Message (optionnel)</label>
+        <textarea id="message" name="message" placeholder="Détails utiles…"></textarea>
+      </div>
+        
+        </div>
+      
+      <div>
+        
+        <div style="display: flex; align-items: center; justify-content: center; background: white; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; transition: border-color 0.3s ease;" id="btn_step">
+      <button type="button" id="prev" class="prevStep" onclick="prevStep()"> ⟨ </button>
+      <div id="nb_step" style="color:black; width:100%; text-align:center"> Votre identité </div> 
+      <button type="button" id="next" class="nextStep" onclick="nextStep()" > ⟩ </button>
+    </div>
+          
+          
+      
+      </div>
+      
+      
+      <!-- section 4 -->
+
+      <div id="step_4" class="step_all">
+      <div class="info-box">
+        <span id="distanceInfo">Distance : —</span>
+        <span id="durationInfo">Durée estimée : —</span>
+        <span id="priceInfo">Tarif estimé : —</span>
+      </div>
+
+      <button type="submit" id="submitBtn">Réserver</button>
+      <div class="success-message" id="successMessage">✅ Réservation envoyée avec succès !</div>
+        
+        </div>
+    </form>
+
+    <div id="map"></div>
+    
+    <!-- Toast de confirmation -->
+<div id="toast" class="toast">✅ Votre réservation a été enregistrée avec succès !</div>
+
+  </div>
+  
+</main>
+
+<!-- Section 8 -->
+
+<footer style="padding:20px 10px;/*background:#0b1a2b;*/ background-color: #000000; color:#fff;text-align:center;font-family:'Poppins',sans-serif;">
+  <p style="margin:5px 0; font-size:0.9rem;">© 2025 A.E TRANSPORT – Chauffeur privé haut de gamme</p>
+  <p style="margin:5px 0; font-size:0.9rem;">
+    <a href="#" style="color:#fff;text-decoration:none;margin:0 8px;">Mentions légales</a>|
+    <a href="#" style="color:#fff;text-decoration:none;margin:0 8px;">Politique de confidentialité</a>|
+    <a href="https://www.instagram.com/" target="_blank" style="color:#fff;text-decoration:none;margin:0 8px;">Instagram</a>
+  </p>
+</footer>
+
+
+
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+
+
+
+
+
+
+<script>
+  const map = L.map('map').setView([48.8566, 2.3522], 13);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+      attribution:'&copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a>'
+    }).addTo(map);
+
+    let routingControl = L.Routing.control({
+      waypoints: [],
+      routeWhileDragging: true,
+      show: false,
+      fitSelectedRoute: true,
+      addWaypoints: false
+    }).addTo(map);
+
+    const distanceInfo = document.getElementById('distanceInfo');
+    const durationInfo = document.getElementById('durationInfo');
+    const priceInfo = document.getElementById('priceInfo');
+
+    // Calcul du tarif
+    function calculatePrice(vehicleType, distanceKm, durationMin) {
+      const tarifs = {
+        standard: { base: 2, perKm: 1.2, perMin: 0.3, min: 6 },
+        berline: { base: 5, perKm: 1.8, perMin: 0.45, min: 10 },
+        van: { base: 6, perKm: 2, perMin: 0.5, min: 12 }
+      };
+      const t = tarifs[vehicleType];
+      if (!t) return 0;
+      const price = t.base + distanceKm * t.perKm + durationMin * t.perMin;
+      return Math.max(price, t.min).toFixed(2);
+    }
+
+    async function updateRoute() {
+      const addr1 = document.getElementById('pickup').value;
+      const addr2 = document.getElementById('dropoff').value;
+      if (!addr1 || !addr2) return;
+
+      try {
+        const [geo1, geo2] = await Promise.all([
+          fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(addr1)).then(r=>r.json()),
+          fetch('https://nominatim.openstreetmap.org/search?format=json&q=' + encodeURIComponent(addr2)).then(r=>r.json())
+        ]);
+    if (!geo1.length || !geo2.length) return alert("Adresse introuvable.");
+
+        const latlng1 = L.latLng(geo1[0].lat, geo1[0].lon);
+        const latlng2 = L.latLng(geo2[0].lat, geo2[0].lon);
+
+        routingControl.setWaypoints([latlng1, latlng2]);
+
+        routingControl.on('routesfound', function(e) {
+          const route = e.routes[0];
+          const distanceKm = route.summary.totalDistance / 1000;
+          const durationMin = route.summary.totalTime / 60;
+
+          distanceInfo.textContent = `Distance : ${distanceKm.toFixed(2)} km`;
+          durationInfo.textContent = `Durée estimée : ${Math.round(durationMin)} min`;
+          
+          get_distance = distanceKm.toFixed(2)
+          get_duration = Math.round(durationMin)
+
+          const vehicleType = document.getElementById('vehicle').value;
+          if (vehicleType) {
+            const price = calculatePrice(vehicleType, distanceKm, durationMin);
+            get_price = price
+            priceInfo.textContent = `Tarif estimé : ${price} €`;
+          } else {
+            priceInfo.textContent = "Tarif estimé : —";
+          }
+        });
+
+      } catch (err) {
+        console.error("Erreur de géocodage / routing", err);
+      }
+    }
+
+
+
+
+
+document.addEventListener('DOMContentLoaded', () => {
+  
+
+  
+  
+  document.querySelectorAll('.step_all').forEach(el => {
+    el.style.display = 'none';
+  });
+  
+  
+  document.querySelector('#step_1').style.display = 'block';
+  
+  
+  // Gestion des boutons + et -
+  document.querySelectorAll('.number-input').forEach(container => {
+    const input = container.querySelector('input');
+    const increment = container.querySelector('.increment');
+    const decrement = container.querySelector('.decrement');
+
+    increment.addEventListener('click', () => {
+      if (input.value < input.max) {
+        input.value = parseInt(input.value) + 1;
+      }
+    });
+
+    decrement.addEventListener('click', () => {
+      if (input.value > input.min) {
+        input.value = parseInt(input.value) - 1;
+      }
+    });
+  });
+  
+  
+  
+  
+  
+});
+
+
+
+  const steps = document.querySelectorAll(".step_all");
+  let currentStep = 1;
+  let totalStep = 4;
+  document.querySelector(`#prev`).style.display = 'none';
+  
+
+  // Affiche la première étape au chargement
+  function showStep(index) {
+   /* steps.forEach(step => step.classList.remove("active"));
+    steps[index].classList.add("active");*/
+    
+      document.querySelectorAll('.step_all').forEach(el => {
+    el.style.display = 'none';
+  });
+    document.querySelector('#step_' + currentStep).style.display = 'block';
+    
+      if(currentStep == 2){
+      document.querySelector(`#prev`).style.display = "block"
+    } else if (currentStep == 1){
+      document.querySelector(`#prev`).style.display = "none"
+    } else if (currentStep == 4) {
+      document.querySelector(`#next`).style.display = "none"
+    }
+    
+    
+  }
+
+
+
+
+  // Fonction pour aller à l'étape suivante
+  function nextStep() {
+  
+    
+    if (currentStep < totalStep) {
+      currentStep++;
+      showStep(currentStep);
+    } 
+    
+    if (currentStep === totalStep) {
+      document.querySelector(`#btn_step`).style.display = 'none';
+    }
+    
+  }
+
+  // Fonction pour revenir à l'étape précédente
+  function prevStep() {
+    if (currentStep > 0) {
+      currentStep--;
+      showStep(currentStep);
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+document.querySelector('#phone').addEventListener('blur', function() {
+ // maFonction();
+  name = document.querySelector('#name').value
+  email = document.querySelector('#email').value
+  phone = document.querySelector('#phone').value
+  //document.querySelector('#name')
+  
+  if(name.trim() != "" && email.trim() != "" && phone.trim() != "" ){
+     document.querySelectorAll('.step_all').forEach(el => {
+    el.style.display = 'none';
+  });
+  
+  
+  document.querySelector('#step_2').style.display = 'block';
+  
+    
+  }
+  
+});
+
+
+
+document.querySelector('#time').addEventListener('blur', function() {
+ // maFonction();
+  pickup = document.querySelector('#pickup').value
+  dropoff = document.querySelector('#dropoff').value
+  date = document.querySelector('#date').value
+    time = document.querySelector('#time').value
+  //document.querySelector('#name')
+  
+  if(pickup.trim() != "" && dropoff.trim() != "" && date.trim() != "" && time.trim() != "" ){
+     document.querySelectorAll('.step_all').forEach(el => {
+    el.style.display = 'none';
+  });
+  
+  
+  document.querySelector('#step_2').style.display = 'block';
+  
+    
+  }
+  
+});
+
+
+</script>
