@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>A.E TRANSPORT</title>
+<style>
+
+ body{
+  margin : auto;
+   background-color: #f8f9fb;
+ }
+  
+    header {
+      background-color: #111;
+      color: white;
+      padding-top: 10px;
+      /*padding-left: 20px;
+      padding-right: 20px;*/
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 999;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      align-items: center;
+      display: flex; 
+      gap: 20px;
+    }
+
+    .nav-links {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+     align-items: center;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #e91e63;
+    }
+
+    .burger {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 4px;
+    }
+
+    .burger div {
+      width: 25px;
+      height: 3px;
+      background-color: white;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero {
+       margin-top: 70px !important;
+     }
+      
+    .hero h1{
+      font-size: xx-large !important;
+     }
+     
+      .nav-links {
+        position: absolute;
+        top: 30px;
+        right: 0;
+        background-color: #111;
+        flex-direction: column;
+        width: 100%;
+        display: none;
+        align-items: flex-start;
+      }
+
+      .nav-links.active {
+        display: flex;
+        padding-top: 20px;
+        margin-right: -30px;
+        height: 210px;
+        margin-top: 30px;
+      }
+
+      .burger {
+        display: flex;
+      }
+
+
+     header {
+          padding-bottom: 10px;
+     }
+
+      details p {
+        margin-left: 10px !important;
+      }
+     
+    }
+
+    .main {
+      padding-top: 70px; /* pour ne pas cacher le contenu sous la nav fixe */
+    }
+
+  
+    .hero {
+      position: relative;
+      height: 15vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      margin-top: 65px;
+    }
+
+    .hero video,
+    .hero img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -1;
+    }
+
+    .overlay {
+      background: rgba(0, 0, 0, 0.6); /* assombrit pour que le texte ressorte */
+      /*border-radius: 20px;*/
+      border-bottom-right-radius : 20px;
+      border-bottom-left-radius :20px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      z-index: 0;
+    }
+
+    .hero-content {
+      z-index: 1;
+      padding: 20px;
+    }
+
+    .hero h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+
+    .hero p {
+      font-size: 15px;
+      margin: 10px 0;
+    }
+
+    .hero .location {
+      font-size: 15px;
+      margin-bottom: 40px;
+    }
+
+    .hero .cta-button {
+      background-color: #fff;
+      color: black;
+      padding: 10px 15px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    .hero .cta-button:hover {
+      background-color: #000000;
+      color : #fff;
+    }
+
+
+
+
+  /* --- Section Contact --- */
+    .contact-section {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 0 20px;
+      font-family:'Poppins',sans-serif;
+    }
+
+    .contact-container {
+      display: flex;
+      flex-wrap: wrap;
+      background: #fff;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      border-radius: 15px;
+      overflow: hidden;
+    }
+
+    .contact-info {
+      flex: 1 1 40%;
+      background: #111;
+      color: #fff;
+      padding: 50px 30px;
+      text-align: center;
+    }
+
+    .contact-info h2 {
+      /*color: #FF5722;*/
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+    }
+
+    .contact-info p {
+      line-height: 1.6;
+      margin-bottom: 20px;
+      color: #ccc;
+    }
+
+    .contact-info a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .contact-form {
+      flex: 1 1 60%;
+      padding: 40px;
+      background:#111;
+    }
+
+    .contact-form h2 {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      color: #fff;
+      
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    input, textarea, select {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 15px;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, textarea:focus, select:focus {
+      border-color: #FF5722;
+      box-shadow: 0 0 8px rgba(255,87,34,0.3);
+      outline: none;
+    }
+
+    button {
+      background: #fff;
+      color: #000000;
+      border: none;
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background: #e64a19;
+    }
+
+    .success {
+      color: #2e7d32;
+      font-weight: 600;
+      margin-top: 15px;
+    }
+
+    @media screen and (max-width: 768px) {
+      .contact-container {
+        flex-direction: column;
+      }
+      .contact-info, .contact-form {
+        flex: 1 1 100%;
+      }
+      .contact-info {
+        text-align: center;
+      }
+    }
+</style>
+
+</head>
+
+
+<body>
+
+  
+ <header>
+    <div class="navbar">
+      <div class="logo" onclick="location.href='/aetransport-test' " >
+       <img id="logoHead" src="/aetransport-test/-5981017327669462784_120-removebg-preview.png" style="width: 50px;">
+       A.E TRANSPORT
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/aetransport-test/a_propos.html">A propos</a></li>
+        <li><a href="/aetransport-test/flottes.html">Notre flotte</a></li>
+        <li><a href="/aetransport-test/faq.html">FAQ</a></li>
+        <li><a href="/aetransport-test/#contact">Contact</a></li>
+        <li><a id="reserveLink" href="/aetransport-test/reservation.html" style="background: #ffffff;color: #FF5722;padding: 10px 20px;border-radius:10px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:10px;width: 70px;">Réserver</a></li>
+      </ul>
+      <div class="burger" id="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </header>
+
+
+
+  <!-- Texte header -->
+<div class="hero"> 
+    <img src="https://storage.googleapis.com/pod_public/1300/126525.jpg" 
+           alt="Photo vue panoramique de Paris" 
+           style="width:100%;border-bottom-right-radius : 20px; border-bottom-left-radius :20px ;box-shadow:0 8px 20px rgba(0,0,0,0.1);animation:floatImg 5s ease-in-out infinite;">
+
+    <!-- Filtre sombre -->
+    <div class="overlay"></div>
+
+    <!-- Contenu -->
+    <div class="hero-content">
+      <h1>Contact</h1>
+    </div>
+  </div>
+ <!-- Fin texte header -->
+
+
+
+<main  style="background:#f8f9fb; margin-top: 65px; margin-bottom: 50px;">
+
+
+
+   <section class="contact-section">
+    <div class="contact-container">
+
+      <!-- Infos -->
+      <div class="contact-info">
+        <h2>Nos coordonnées</h2>
+        <p>📍 Paris et Île-de-France, France</p>
+        <p>📞 <a href="tel:+33612345678">+33 6 12 34 56 78</a></p>
+        <p>✉️ <a href="mailto:contact@aetransport.fr">contact@aetransport.fr</a></p>
+        <p>🕒 Disponible 7j/7 – 24h/24 sur réservation</p>
+      </div>
+
+      <!-- Formulaire -->
+      <div class="contact-form">
+        <div style="width: 100%; text-align: center;">
+        <img id="logoHead" src="https://lolow509.github.io/aetransport-test/-5981017327669462784_120-removebg-preview.png" style="width: 150px;">
+        </div>
+        
+        
+        <h2>Envoyez-nous un message</h2>
+        <form id="contactForm">
+          <input type="text" id="name" name="name" placeholder="Votre nom complet" required>
+          <input type="email" id="email" name="email" placeholder="Votre adresse e-mail" required>
+          <input type="tel" id="phone" name="phone" placeholder="Votre téléphone">
+          <select id="subject" name="subject" required>
+            <option value="">Sélectionnez un sujet</option>
+            <option value="reservation">Demande de réservation</option>
+            <option value="collaboration">Partenariat / Collaboration</option>
+            <option value="information">Demande d’informations</option>
+            <option value="autre">Autre</option>
+          </select>
+          <textarea id="message" name="message" rows="5" placeholder="Votre message..." required></textarea>
+          <button type="submit">Envoyer</button>
+          <p id="successMsg" class="success" style="display:none;">✅ Votre message a été envoyé avec succès.</p>
+        </form>
+      </div>
+
+    </div>
+  </section>
+
+
+  
+</main>
+
+<!-- Section 8 -->
+
+<footer style="padding:20px 10px;background:#0b1a2b;color:#fff;text-align:center;font-family:'Poppins',sans-serif;">
+  <p style="margin:5px 0; font-size:0.9rem;">© 2025 A.E TRANSPORT – Chauffeur privé haut de gamme</p>
+  <p style="margin:5px 0; font-size:0.9rem;">
+    <a href="#" style="color:#fff;text-decoration:none;margin:0 8px;">Mentions légales</a>|
+    <a href="#" style="color:#fff;text-decoration:none;margin:0 8px;">Politique de confidentialité</a>|
+    <a href="https://www.instagram.com/" target="_blank" style="color:#fff;text-decoration:none;margin:0 8px;">Instagram</a>
+  </p>
+</footer>
+
+</body>
+
+    <script>
+    // Script pour le menu burger mobile
+    const burger = document.getElementById('burger');
+    const navLinks = document.getElementById('nav-links');
+
+    burger.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+
+        document.getElementById('contactForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(e.target);
+      const data = Object.fromEntries(formData.entries());
+
+      try {
+        await fetch('https://script.google.com/macros/s/TON_SCRIPT_ID/exec', {
+          method: 'POST',
+          body: JSON.stringify(data),
+          headers: { 'Content-Type': 'application/json' }
+        });
+
+        document.getElementById('successMsg').style.display = 'block';
+        e.target.reset();
+      } catch (error) {
+        alert('❌ Une erreur est survenue. Veuillez réessayer.');
+        console.error(error);
+      }
+    });  </script>
+</html>
