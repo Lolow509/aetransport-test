@@ -1,3 +1,8 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>A.E TRANSPORT</title>
@@ -426,6 +431,60 @@ input[type=number] {
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css"/>
+
+
+
+</head>
+
+
+<body>
+
+
+
+
+
+<header>
+    <div class="navbar">
+      <div class="logo" onclick="location.href='/aetransport-test' ">
+       <img id="logoHead" src="/aetransport-test/-5981017327669462784_120-removebg-preview.png" style="width: 50px;">
+       A.E TRANSPORT
+      </div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/aetransport-test/a_propos.html">A propos</a></li>
+        <li><a href="/aetransport-test/flottes.html">Notre flotte</a></li>
+        <li><a href="/aetransport-test/faq.html">FAQ</a></li>
+        <li><a href="/aetransport-test/contact.html">Contact</a></li>
+        <li><a id="reserveLink" href="/aetransport-test/reservation.html" style="background: #ffffff;color: #FF5722;padding: 10px 20px;border-radius:10px;text-decoration:none;font-weight:600;display:flex;align-items:center;gap:10px;width: fit-content;">Réserver</a></li>
+      </ul>
+      <div class="burger" id="burger">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </header>
+
+
+
+
+  <!-- Texte header -->
+<div class="hero"> 
+    <img src="https://storage.googleapis.com/pod_public/1300/126525.jpg" 
+           alt="Photo vue panoramique de Paris" 
+           style="width:100%; box-shadow:0 8px 20px rgba(0,0,0,0.1);animation:floatImg 5s ease-in-out infinite;">
+
+    <!-- Filtre sombre -->
+    <div class="overlay"></div>
+
+    <!-- Contenu -->
+    <div class="hero-content">
+      <h1>Réservation</h1>
+    </div>
+  </div>
+ <!-- Fin texte header -->
+
+
+
   
 
 
@@ -590,7 +649,7 @@ input[type=number] {
   </p>
 </footer>
 
-
+</body>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
@@ -825,3 +884,4 @@ document.querySelector('#time').addEventListener('blur', function() {
 
 
 </script>
+</html>
