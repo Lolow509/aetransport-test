@@ -853,12 +853,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     
     if (currentStep === 1) {
-      name = document.querySelector('#name').value
+      name = document.querySelector('#name').value 
       email = document.querySelector('#email').value
       phone = document.querySelector('#phone').value
 
        if(name.trim() != "" && email.trim() != "" && phone.trim() != "" ){
              currentStep++;
+
+         document.querySelector(`#nb_step`).innerText = "Etatpe " + currentStep
               showStep(currentStep);
         } else {
          showToast('Informations manquantes')
@@ -873,6 +875,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
        if(pickup.trim() != "" && dropoff.trim() != "" && date.trim() != "" && time.trim() != "" ){
              currentStep++;
+         document.querySelector(`#nb_step`).innerText = "Etatpe " + currentStep
               showStep(currentStep);
         } else {
          showToast('Informations manquantes')
@@ -887,6 +890,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
        if(vehicule.trim() != ""  ){
              currentStep++;
+         document.querySelector(`#nb_step`).innerText = "Etatpe " + currentStep
               showStep(currentStep);
         } else {
          showToast('Informations manquantes')
