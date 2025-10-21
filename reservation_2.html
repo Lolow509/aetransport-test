@@ -417,7 +417,38 @@ input[type=number] {
 
 .input-row .form-group {
   flex: 1; /* chaque champ prend la même largeur */
-}</style>
+}
+
+
+  #toast {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #fff;
+  color: #333;
+  text-align: center;
+  border-radius: 8px;
+  border-style: solid;
+  border-width: 1px;
+  padding: 14px;
+  position: fixed;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  z-index: 9999;
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.4s, bottom 0.4s;
+}
+
+#toast.show {
+  visibility: visible;
+  opacity: 1;
+  bottom: 50px;
+}
+
+
+
+</style>
 
 
 
@@ -439,7 +470,7 @@ input[type=number] {
 
 <body>
 
-
+<div id="toast"></div>
 
 
 
@@ -810,17 +841,68 @@ document.addEventListener('DOMContentLoaded', () => {
   // Fonction pour aller à l'étape suivante
   function nextStep() {
   
-    
+  /*  
     if (currentStep < totalStep) {
       currentStep++;
       showStep(currentStep);
-    } 
-    
-    if (currentStep === totalStep) {
+    } else if (currentStep === totalStep) {
       document.querySelector(`#btn_step`).style.display = 'none';
     }
+  */
+
+    
+    
+    if (currentStep === 1) {
+      name = document.querySelector('#name').value
+      email = document.querySelector('#email').value
+      phone = document.querySelector('#phone').value
+
+       if(name.trim() != "" && email.trim() != "" && phone.trim() != "" ){
+             currentStep++;
+              showStep(currentStep);
+        } else {
+         showToast('Informations manquantes')
+        }
+         
+    } else if (currentStep === 2) {
+      pickup = document.querySelector('#pickup').value
+      dropoff = document.querySelector('#dropoff').value
+      date = document.querySelector('#date').value
+      time = document.querySelector('#time').value
+      
+
+       if(pickup.trim() != "" && dropoff.trim() != "" && date.trim() != "" && time.trim() != "" ){
+             currentStep++;
+              showStep(currentStep);
+        } else {
+         showToast('Informations manquantes')
+        }
+         
+    } else if (currentStep === 3) {
+      vehicle = document.querySelector('#vehicule').value
+      passengers = document.querySelector('#dropoff').value
+      date = document.querySelector('#date').value
+      time = document.querySelector('#time').value
+      
+
+       if(vehicule.trim() != ""  ){
+             currentStep++;
+              showStep(currentStep);
+        } else {
+         showToast('Informations manquantes')
+        }
+         
+    }
+
+
+
+    
     
   }
+
+
+
+  
 
   // Fonction pour revenir à l'étape précédente
   function prevStep() {
@@ -881,6 +963,23 @@ document.querySelector('#time').addEventListener('blur', function() {
   }
   
 });
+
+
+
+
+  
+function showToast(message, duration = 3000) {
+  const toast = document.getElementById("toast");
+  toast.textContent = message;
+  toast.className = "show";
+
+  // Masquer après X secondes
+  setTimeout(() => {
+    toast.className = toast.className.replace("show", "");
+  }, duration);
+}
+
+
 
 
 </script>
