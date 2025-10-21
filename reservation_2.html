@@ -636,7 +636,7 @@ input[type=number] {
         
         <div style="display: flex; align-items: center; justify-content: center; background: white; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; transition: border-color 0.3s ease;" id="btn_step">
       <button type="button" id="prev" class="prevStep" onclick="prevStep()"> ⟨ </button>
-      <div id="nb_step" style="color:black; width:100%; text-align:center"> Votre identité </div> 
+      <div id="nb_step" style="color:black; width:100%; text-align:center"> Etape 1 </div> 
       <button type="button" id="next" class="nextStep" onclick="nextStep()" > ⟩ </button>
     </div>
           
@@ -859,7 +859,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
        if(name.trim() != "" && email.trim() != "" && phone.trim() != "" ){
              currentStep++;
-
          document.querySelector(`#nb_step`).innerText = "Etatpe " + currentStep
               showStep(currentStep);
         } else {
@@ -912,6 +911,8 @@ document.addEventListener('DOMContentLoaded', () => {
   function prevStep() {
     if (currentStep > 0) {
       currentStep--;
+
+       document.querySelector(`#nb_step`).innerText = "Etatpe " + currentStep
       showStep(currentStep);
     }
   }
