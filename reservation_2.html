@@ -924,8 +924,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
+//A supprimer si code ok
+/*
 document.querySelector('#phone').addEventListener('blur', function() {
  // maFonction();
   name = document.querySelector('#name').value
@@ -968,7 +968,7 @@ document.querySelector('#time').addEventListener('blur', function() {
   }
   
 });
-
+*/
 
 
 
@@ -1038,7 +1038,9 @@ function setupAddressAutocomplete(inputId) {
          
           /*item.textContent = place.display_name;*/
 
-          item.textContent = `${place.address.house_number } ${place.address.road } ${place.address.postcode } ${place.address.town }, ${place.address.county }, ${place.address.country }`;
+          get_ville = place.address.city || place.address.town || place.address.village || place.address.hamlet 
+
+          item.textContent = `${place.address.house_number } ${place.address.road } ${place.address.postcode } ${get_ville }, ${place.address.county }, ${place.address.country }`;
           
           item.style.padding = "8px";
           item.style.cursor = "pointer";
