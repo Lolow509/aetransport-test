@@ -887,7 +887,7 @@ document.addEventListener('DOMContentLoaded', () => {
       time = document.querySelector('#time').value
       
 
-       if(vehicule.trim() != ""  ){
+       if(vehicle.trim() != ""  ){
              currentStep++;
          document.querySelector(`#nb_step`).innerText = "Etatpe " + currentStep
               showStep(currentStep);
@@ -895,6 +895,8 @@ document.addEventListener('DOMContentLoaded', () => {
          showToast('Informations manquantes')
         }
          
+    }  else if (currentStep === 4) {
+      console.log("ok")
     }
 
 
