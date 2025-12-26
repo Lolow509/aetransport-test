@@ -1029,6 +1029,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
+
+  let autres_info = ""
+  let name = ""
+  let email = ""
+
+
+
   // Fonction pour aller à l'étape suivante
   function nextStep() {
   
@@ -1089,6 +1096,21 @@ document.addEventListener('DOMContentLoaded', () => {
               }
          
     } else if (currentStep === 4) {
+
+   document.querySelector('#get_name').value = name
+   document.querySelector('#get_email').value = email
+   document.querySelector('#get_phone').value = phone
+
+   document.querySelector('#get_pickup').value = pickup
+   document.querySelector('#get_dropoff').value = dropoff
+   document.querySelector('#get_date').value = date
+   document.querySelector('#get_time').value = time
+   document.querySelector('#get_vehicle').value = vehicle
+   document.querySelector('#get_message').value = message
+   document.querySelector('#get_passengers').value,
+   document.querySelector('#get_bagages').value = bagages
+   document.querySelector('#get_rehausseurs').value = rehausseurs
+   document.querySelector('#get_eau').value = eau
 
                  autres_info = JSON.stringify({
                          passengers : document.querySelector('#passengers').value,
