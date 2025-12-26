@@ -1053,11 +1053,12 @@ document.addEventListener('DOMContentLoaded', () => {
       email = document.querySelector('#email').value
       phone = document.querySelector('#phone').value
 
+       if(name.trim() != "" && email.trim() != "" && phone.trim() != "" ){
+         
        document.querySelector('#get_name').innerText = name
    document.querySelector('#get_email').innerText = email
    document.querySelector('#get_phone').innerText = phone
 
-       if(name.trim() != "" && email.trim() != "" && phone.trim() != "" ){
              currentStep++;
          document.querySelector(`#nb_step`).innerText = "Etatpe " + currentStep
               showStep(currentStep);
@@ -1070,9 +1071,17 @@ document.addEventListener('DOMContentLoaded', () => {
       dropoff = document.querySelector('#dropoff').value
       date = document.querySelector('#date').value
       time = document.querySelector('#time').value
-      
+
 
        if(pickup.trim() != "" && dropoff.trim() != "" && date.trim() != "" && time.trim() != "" ){
+
+         
+   document.querySelector('#get_pickup').innerText = pickup
+   document.querySelector('#get_dropoff').innerText = dropoff
+   document.querySelector('#get_date').innerText = date
+   document.querySelector('#get_time').innerText = time
+
+         
              currentStep++;
          document.querySelector(`#nb_step`).innerText = "Etatpe " + currentStep
               showStep(currentStep);
@@ -1090,6 +1099,22 @@ document.addEventListener('DOMContentLoaded', () => {
       
 
              if(vehicle.trim() != ""  ){
+
+                  document.querySelector('#get_vehicle').innerText = vehicle
+   document.querySelector('#get_message').innerText = message
+   document.querySelector('#get_passengers').innerText = passengers
+   document.querySelector('#get_bagages').innerText = bagages
+   document.querySelector('#get_rehausseurs').innerText = rehausseurs
+   document.querySelector('#get_eau').innerText = eau
+
+      /*           autres_info = JSON.stringify({
+                         passengers : document.querySelector('#passengers').value,
+                         bagages : document.querySelector('#bagages').value,
+                         rehausseurs : document.querySelector('#rehausseurs').value,
+                         eau : document.querySelector('#eau').value
+                       })
+     */
+               
                    currentStep++;
                document.querySelector(`#nb_step`).innerText = "Etatpe " + currentStep
                     showStep(currentStep);
@@ -1097,30 +1122,7 @@ document.addEventListener('DOMContentLoaded', () => {
                showToast('Informations manquantes')
               }
          
-    } else if (currentStep === 4) {
-
-  
-
-   document.querySelector('#get_pickup').innerText = pickup
-   document.querySelector('#get_dropoff').innerText = dropoff
-   document.querySelector('#get_date').innerText = date
-   document.querySelector('#get_time').innerText = time
-   document.querySelector('#get_vehicle').innerText = vehicle
-   document.querySelector('#get_message').innerText = message
-   document.querySelector('#get_passengers').innerText = passengers
-   document.querySelector('#get_bagages').innerText = bagages
-   document.querySelector('#get_rehausseurs').innerText = rehausseurs
-   document.querySelector('#get_eau').innerText = eau
-
-                 autres_info = JSON.stringify({
-                         passengers : document.querySelector('#passengers').value,
-                         bagages : document.querySelector('#bagages').value,
-                         rehausseurs : document.querySelector('#rehausseurs').value,
-                         eau : document.querySelector('#eau').value
-                       })
-      
     }
-
     
     
   }
