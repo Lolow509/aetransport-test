@@ -55,7 +55,7 @@ addEventListener("submit", (event) => {
 
      openSheet()
 
-
+/*
    name = document.querySelector('#get_name').value
    email = document.querySelector('#get_email').value
    phone = document.querySelector('#get_phone').value
@@ -73,7 +73,7 @@ addEventListener("submit", (event) => {
      rehausseurs : document.querySelector('#rehausseurs').value || 0,
      eau : document.querySelector('#eau').value || 0,
    })
-
+*/
 
       get_distance = "10"
       get_duration = "5"
