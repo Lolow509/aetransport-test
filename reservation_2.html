@@ -1053,6 +1053,10 @@ document.addEventListener('DOMContentLoaded', () => {
       email = document.querySelector('#email').value
       phone = document.querySelector('#phone').value
 
+       document.querySelector('#get_name').innerText = name
+   document.querySelector('#get_email').innerText = email
+   document.querySelector('#get_phone').innerText = phone
+
        if(name.trim() != "" && email.trim() != "" && phone.trim() != "" ){
              currentStep++;
          document.querySelector(`#nb_step`).innerText = "Etatpe " + currentStep
@@ -1095,9 +1099,7 @@ document.addEventListener('DOMContentLoaded', () => {
          
     } else if (currentStep === 4) {
 
-   document.querySelector('#get_name').innerText = name
-   document.querySelector('#get_email').innerText = email
-   document.querySelector('#get_phone').innerText = phone
+  
 
    document.querySelector('#get_pickup').innerText = pickup
    document.querySelector('#get_dropoff').innerText = dropoff
