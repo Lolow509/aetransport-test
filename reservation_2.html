@@ -447,6 +447,22 @@ input[type=number] {
 }
 
 
+  /**infobox scroll**/
+  /* scrollbar desktop */
+.info-box::-webkit-scrollbar {
+  width: 6px;
+}
+
+.info-box::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 4px;
+}
+
+.info-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
 
   /***** nouvelle CSS ****/
   /****** CSS Call to Action *******/
@@ -1055,19 +1071,30 @@ document.addEventListener('DOMContentLoaded', () => {
          
     } else if (currentStep === 3) {
       vehicle = document.querySelector('#vehicle').value
-      passengers = document.querySelector('#dropoff').value
-      date = document.querySelector('#date').value
-      time = document.querySelector('#time').value
+      passengers = document.querySelector('#passengers').value
+      bagages = document.querySelector('#bagages').value
+      rehausseurs = document.querySelector('#rehausseurs').value
+      eau = document.querySelector('#eau').value
+      message = document.querySelector('#message').value
       
 
-       if(vehicle.trim() != ""  ){
-             currentStep++;
-         document.querySelector(`#nb_step`).innerText = "Etatpe " + currentStep
-              showStep(currentStep);
-        } else {
-         showToast('Informations manquantes')
-        }
+             if(vehicle.trim() != ""  ){
+                   currentStep++;
+               document.querySelector(`#nb_step`).innerText = "Etatpe " + currentStep
+                    showStep(currentStep);
+              } else {
+               showToast('Informations manquantes')
+              }
          
+    } else if (currentStep === 4) {
+
+                 autres_info = JSON.stringify({
+                         passengers : document.querySelector('#passengers').value,
+                         bagages : document.querySelector('#bagages').value,
+                         rehausseurs : document.querySelector('#rehausseurs').value,
+                         eau : document.querySelector('#eau').value
+                       })
+      
     }
 
     
