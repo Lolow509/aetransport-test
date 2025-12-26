@@ -1030,9 +1030,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 
-  let autres_info = ""
-  let name = ""
-  let email = ""
+  let autres_info
 
 
 
@@ -1097,20 +1095,20 @@ document.addEventListener('DOMContentLoaded', () => {
          
     } else if (currentStep === 4) {
 
-   document.querySelector('#get_name').value = name
-   document.querySelector('#get_email').value = email
-   document.querySelector('#get_phone').value = phone
+   document.querySelector('#get_name').innerText = name
+   document.querySelector('#get_email').innerText = email
+   document.querySelector('#get_phone').innerText = phone
 
-   document.querySelector('#get_pickup').value = pickup
-   document.querySelector('#get_dropoff').value = dropoff
-   document.querySelector('#get_date').value = date
-   document.querySelector('#get_time').value = time
-   document.querySelector('#get_vehicle').value = vehicle
-   document.querySelector('#get_message').value = message
-   document.querySelector('#get_passengers').value,
-   document.querySelector('#get_bagages').value = bagages
-   document.querySelector('#get_rehausseurs').value = rehausseurs
-   document.querySelector('#get_eau').value = eau
+   document.querySelector('#get_pickup').innerText = pickup
+   document.querySelector('#get_dropoff').innerText = dropoff
+   document.querySelector('#get_date').innerText = date
+   document.querySelector('#get_time').innerText = time
+   document.querySelector('#get_vehicle').innerText = vehicle
+   document.querySelector('#get_message').innerText = message
+   document.querySelector('#get_passengers').innerText = passengers
+   document.querySelector('#get_bagages').innerText = bagages
+   document.querySelector('#get_rehausseurs').innerText = rehausseurs
+   document.querySelector('#get_eau').innerText = eau
 
                  autres_info = JSON.stringify({
                          passengers : document.querySelector('#passengers').value,
