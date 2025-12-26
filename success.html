@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Paiement réussi</title>
+
+  <!-- Police proche Uber -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #000;
+      color: #fff;
+    }
+
+    .container {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 32px 20px 24px;
+    }
+
+    /* Check icon */
+    .check-wrapper {
+      display: flex;
+      justify-content: center;
+      margin-top: 60px;
+    }
+
+    .check-circle {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      background: #1dbf73;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .check {
+      width: 32px;
+      height: 18px;
+      border-left: 4px solid #fff;
+      border-bottom: 4px solid #fff;
+      transform: rotate(-45deg);
+      margin-bottom: 6px;
+    }
+
+    /* Text */
+    .content {
+      text-align: center;
+      margin-top: 32px;
+    }
+
+    .content h1 {
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .content p {
+      font-size: 16px;
+      color: #b3b3b3;
+      margin: 0;
+    }
+
+    .sub {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #8e8e8e;
+      line-height: 1.4;
+      text-align: center;
+    }
+
+    /* Card recap */
+    .card {
+      background: #111;
+      border-radius: 16px;
+      padding: 20px;
+      margin-top: 40px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+
+    .row:last-child {
+      margin-bottom: 0;
+    }
+
+    .label {
+      color: #b3b3b3;
+    }
+
+    .value {
+      font-weight: 600;
+    }
+
+    /* Button */
+    .footer {
+      margin-top: 40px;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 16px;
+      background: #fff;
+      color: #000;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+
+    /* Cancel icon */
+   .cancel-circle {
+     width: 96px;
+     height: 96px;
+     border-radius: 50%;
+     background: #e11900;
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     position: relative;
+   }
+
+   .cancel-circle::before,
+   .cancel-circle::after {
+     content: '';
+     position: absolute;
+     width: 36px;
+     height: 4px;
+     background: #fff;
+     border-radius: 2px;
+   }
+
+   .cancel-circle::before {
+     transform: rotate(45deg);
+   }
+
+   .cancel-circle::after {
+     transform: rotate(-45deg);
+   }
+
+
+   @media screen and (min-width: 800px) {
+     .container {
+       margin:0px 300px
+     }
+
+     .sub {
+        font-size: 15px;
+      }
+   }
+
+
+/*Wait Box*/
+   .wait-screen {
+  position: fixed;
+  inset: 0;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.spinner {
+  width: 48px;
+  height: 48px;
+  border: 2px solid rgba(255,255,255,0.2);
+  border-top: 2px solid #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin-bottom: 16px;
+}
+
+.wait-screen p {
+  color: #b3b3b3;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+}
+
+/* Animation */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.wait-screen {
+  animation: fadeIn 0.25s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+
+
+/* bouton test */
+.action-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 32px;
+}
+
+.action-buttons button {
+  flex: 1;
+  padding: 14px 0;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+}
+
+/* Bouton accueil */
+.btn-secondary {
+  background: #6f6d6d;
+  color: #fff;
+}
+
+/* Bouton réessayer */
+.btn-primary {
+  background: #fff;
+  color: #000;
+}
+
+.action-buttons button:active {
+  transform: scale(0.97);
+}
+
+
+  </style>
+</head>
+<body>
+
+  <div id="wait-screen" class="wait-screen">
+  <div class="spinner"></div>
+  <p>Patientez…</p>
+</div>
+
+
+<div class="container">
+
+  <div>
+    <div class="check-wrapper">
+      <div id="check" class="check-circle">
+        <div class="check"></div>
+      </div>
+    </div>
+
+    <div class="content">
+      <h1 id="check_pay">Paiement effectué</h1>
+      <p id="text_pay">Merci <span id="nom_client"></span> pour votre réservation</p>
+      <p id="subText_pay" style="display: none" class="sub">Vous pouvez réessayer et choisir un autre moyen de paiement.</p>
+    </div>
+
+    <div class="card">
+      <div class="row">
+        <span class="label">Montant payé</span>
+        <span class="value" id="pay_client">20,00 €</span>
+      </div>
+      <!-- <div class="row">
+        <span class="label">Mode de paiement</span>
+        <span class="value" id="modePay_client">Carte bancaire</span>
+      </div> -->
+      <div class="row">
+        <span class="label">Référence</span>
+        <span class="value" id="ref_client">#CMD-45892</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+      <div id="back_home" class="">
+        <button class="btn" onclick="goHome()">Retour à l’accueil</button>
+      </div>
+
+      <div id="retry_pay" class="action-buttons">
+        <button class="btn-secondary" onclick="goHome()">
+          Accueil
+        </button>
+
+        <button class="btn-primary" id="retry_btn" >
+          Réessayer
+        </button>
+      </div>
+
+  </div>
+
+</div>
+
+<script>
+
+
+      const scriptURL = "https://script.google.com/macros/s/AKfycbxyk54UTxMehWUltlxDQv7L5dL4MavAygoH5bttxSZd3BQ_q4JmCONTUToyhcAoyfzDmA/exec"
+
+
+
+  //cs_test_a13D59Z8Nuf6bWPQNQExM3iCYA04lvBKVWw29AR56HDBsJXaFbwB48LvIa = paiement annulé
+  //cs_test_a1bcqiW96Qpjs010IlZTreNZid6EJfMdGOIDoDow8ZF6chbN1UDQ3sF3SA = paiement accepter
+  function goHome() {
+    document.getElementById('wait-screen').style.display = 'flex';
+    window.location.href = '/reservation.html';
+  }
+
+
+  document.getElementById('wait-screen').style.display = 'flex';
+
+  // Exemple : récupération du session_id Stripe
+  const params = new URLSearchParams(window.location.search);
+  const sessionId = params.get('session_id');
+  const get_id = params.get('id');
+  const get_name = params.get('name');
+  const get_amount = params.get('amount');
+  console.log('Stripe session:', sessionId);
+
+
+if (sessionId) {
+
+
+  const raw = "";
+
+const requestOptions = {
+  method: "POST",
+  body: raw,
+  redirect: "follow"
+};
+
+fetch(`${scriptURL}?session_id=${sessionId}&action=get_session_byStripe`, requestOptions)
+  .then((response) => response.json())
+  .then((result) =>{
+    console.log(result)
+
+
+    let amount_total = (result.amount_total / 100).toLocaleString('fr-FR', {
+        style: 'currency',
+        currency: 'EUR'
+      });
+
+    document.querySelector('#ref_client').innerText = result.metadata.order_id
+    document.querySelector('#pay_client').innerText = amount_total
+    document.querySelector('#nom_client').innerText = result.metadata.name
+
+
+    if(result.status == "open"){
+      document.querySelector('.check').remove();
+      document.querySelector('#check').classList.add('cancel-circle')
+      document.querySelector('#check').classList.remove('check-circle')
+      document.querySelector('#check_pay').innerText = 'Paiement refusé';
+      document.querySelector('#text_pay').innerText = 'Aucun montant n’a été débité.';
+      document.querySelector('#subText_pay').style.display = "block"
+
+      document.querySelector('#retry_btn').onclick = () => {
+        window.location.href = result.url;
+        };
+
+        document.querySelector('#retry_pay').style.display = "flex"  //2 btns
+        document.querySelector('#back_home').style.display = "none" //1 btn
+
+
+
+
+    } else if (result.status == "expired"){
+
+      document.querySelector('.check').remove();
+      document.querySelector('#check').classList.add('cancel-circle')
+      document.querySelector('#check').classList.remove('check-circle')
+      document.querySelector('#check_pay').innerText = 'Paiement refusé';
+      document.querySelector('#text_pay').innerText = 'Aucun montant n’a été débité.';
+      document.querySelector('#subText_pay').style.display = "none"
+
+      document.querySelector('#back_home').style.display = "block"  //1 btn
+      document.querySelector('#retry_pay').style.display = "none"  //2 btns
+
+    } else {
+      document.querySelector('#subText_pay').style.display = "none"
+      document.querySelector('#back_home').style.display = "block"  //1 btn
+      document.querySelector('#retry_pay').style.display = "none"  //2 btns
+    }
+
+
+    document.getElementById('wait-screen').style.display = 'none';
+
+  })
+  .catch((error) => console.error(error));
+
+} else {
+  document.querySelector('#ref_client').innerText = get_id
+  document.querySelector('#pay_client').innerText = get_amount +' €'
+  document.querySelector('#nom_client').innerText = get_name
+
+  document.querySelector('#check_pay').innerText = 'Réservation validée';
+
+  document.querySelector('#subText_pay').style.display = "none"
+  document.querySelector('#back_home').style.display = "block"  //1 btn
+  document.querySelector('#retry_pay').style.display = "none"  //2 btns
+
+  document.getElementById('wait-screen').style.display = 'none';
+}
+
+
+
+</script>
+
+</body>
+</html>
+
