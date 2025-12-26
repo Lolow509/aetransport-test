@@ -448,6 +448,122 @@ input[type=number] {
 
 
 
+  /***** nouvelle CSS ****/
+  /****** CSS Call to Action *******/
+    /* Backdrop noir transparent */
+    .backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .3s;
+      z-index: 10;
+    }
+
+    /* Feuille du bas */
+    .sheet {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      transform: translateY(100%);
+      background: #fff;
+      border-radius: 16px 16px 0 0;
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
+      transition: transform .35s ease;
+      z-index: 11;
+    }
+
+    .sheet-content {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .option, .cancel {
+      width: 100%;
+      padding: 14px;
+      margin: 8px 0;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .option {
+      background: #f1f1f1;
+    }
+
+    .cancel {
+      background: #ff4d4d;
+      color: white;
+    }
+
+    /* Classe active */
+    .show-backdrop {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .show-sheet {
+      transform: translateY(0);
+    }
+
+    /* Hidden */
+    .hidden {
+      display: none;
+    }
+
+
+
+    /*Wait Box*/
+       .wait-screen {
+      position: fixed;
+      inset: 0;
+      background: #000;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 2px solid rgba(255,255,255,0.2);
+      border-top: 2px solid #fff;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 16px;
+    }
+
+    .wait-screen p {
+      color: #b3b3b3;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.2px;
+    }
+
+    /* Animation */
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .wait-screen {
+      animation: fadeIn 0.25s ease;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0 }
+      to { opacity: 1 }
+    }
+
+
+
+
+
+
 </style>
 
 
@@ -648,6 +764,34 @@ input[type=number] {
       <!-- section 4 -->
 
       <div id="step_4" class="step_all">
+
+         <div class="info-box" style=" text-align: justify;">
+        <p><b>Nom:</b> <span id="get_name"> Martin Dupont</span> </p>
+        <p><b>Email:</b> <span id="get_email">martin@mail.ff</span> </p>
+        <p><b>Numéro:</b> <span id="get_phone">0606060606</span> </p>
+
+        <br>
+
+        <p> <b>Véhicule:</b> <span id="get_vehicle">Standard</span></p>
+        <p><b>Date:</b> <span id="get_date">11/11/2025</span> </p>
+        <p><b>Heure:</b> <span id="get_time">12:50</span> </p>
+        <p><b>Départ:</b> <span id="get_pickup">1 rue de la republique 74900 Laville</span> </p>
+        <p><b>Arrivé:</b> <span id="get_dropoff">2 rue de la Liberté 75003 Paris</span> </p>
+
+        <br>
+
+        <p><b>Passengers:</b> <span id="get_passengers">0</span> </p>
+        <p><b>Bagages:</b> <span id="get_bagages">0</span> </p>
+        <p><b>Rehausseurs:</b> <span id="get_rehausseurs">0</span> </p>
+        <p><b>Eau:</b> <span id="get_eau">0</span> </p>
+
+        <br>
+
+        <p><b>Message:</b> <span id="get_message">il n'y a pas de message </span> </p>
+      </div>
+
+
+        
       <div class="info-box">
         <span id="distanceInfo">Distance : —</span>
         <span id="durationInfo">Durée estimée : —</span>
@@ -680,10 +824,34 @@ input[type=number] {
   </p>
 </footer>
 
+
+
+  
+<div id="actionSheetBackdrop" class="backdrop hidden"></div>
+
+<div id="actionSheet" class="sheet hidden">
+  <div class="sheet-content">
+    <button class="option" onclick="stripePay('espèce')" id="payCash">Espèce</button>
+    <button class="option" onclick="stripePay('card')" id="payCard">Carte Bleue</button>
+    <button class="option" onclick="stripePay('paypal')" id="payPaypal">PayPal</button>
+    <button class="cancel" onclick="closeSheet()" id="cancelSheet">Annuler</button>
+  </div>
+</div>
+
+
+<div id="wait-screen" class="wait-screen">
+  <div class="spinner"></div>
+  <p>Patientez…</p>
+</div>
+
+
+
 </body>
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.min.js"></script>
+
+  <script src="/reservation.js"></script>
 
 
 
@@ -1074,11 +1242,6 @@ setupAddressAutocomplete("pickup");
 setupAddressAutocomplete("dropoff");
 
 
-
-
-  addEventListener("submit", (event) => {
-    console.log("ok")
-  })
 
 
 
