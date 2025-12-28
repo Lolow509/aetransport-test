@@ -934,6 +934,9 @@ input[type=number] {
           const distanceKm = route.summary.totalDistance / 1000;
           const durationMin = route.summary.totalTime / 60;
 
+          console.log(distanceKM)
+          console.log(durationMin)
+
           distanceInfo.textContent = `Distance : ${distanceKm.toFixed(2)} km`;
           durationInfo.textContent = `Durée estimée : ${Math.round(durationMin)} min`;
           
