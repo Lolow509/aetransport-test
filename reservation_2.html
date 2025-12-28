@@ -941,6 +941,7 @@ input[type=number] {
           get_duration = Math.round(durationMin)
 
           const vehicleType = document.getElementById('vehicle').value;
+          console.log(vehicleType)
           if (vehicleType) {
             const price = calculatePrice(vehicleType, distanceKm, durationMin);
             get_price = price
