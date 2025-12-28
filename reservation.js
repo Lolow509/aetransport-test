@@ -146,7 +146,7 @@ function storeData(moyen, order_type) {
                      console.log(result.url)
 
                      if (order_type == "newOrder") {
-                       window.location.href = `/success.html?id=${get_new_date}&name=${name}&amount=${get_price}`
+                       window.location.href = `/aetransport-test/success.html?id=${get_new_date}&name=${name}&amount=${get_price}`
                      } else if (order_type == "newOrder_byStripe") {
                         window.location.href = result.pay.url
                       }
