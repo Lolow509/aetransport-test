@@ -901,6 +901,7 @@ input[type=number] {
 
     let distanceKm
     let durationMin 
+    let vehicleType
 
     // Calcul du tarif
     function calculatePrice(vehicleType, distanceKm, durationMin) {
@@ -946,7 +947,7 @@ input[type=number] {
           get_distance = distanceKm.toFixed(2)
           get_duration = Math.round(durationMin)
 
-          let vehicleType = document.querySelector('#vehicle').value;
+          vehicleType = document.querySelector('#vehicle').value;
 /*
           let price = calculatePrice(vehicleType, distanceKm, durationMin);
           console.log(price)
