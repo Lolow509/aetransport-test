@@ -1,5 +1,6 @@
 
-    const scriptURL =  "https://script.google.com/macros/s/AKfycbxyk54UTxMehWUltlxDQv7L5dL4MavAygoH5bttxSZd3BQ_q4JmCONTUToyhcAoyfzDmA/exec"
+    const scriptURL = "https://script.google.com/macros/s/AKfycbxELWHeoxMyNc6413Ru0pAh04eaEn6OUH2Jk3yHSkS-7pCtdbMt1rh2goOi2lWw5cZ6GQ/exec"
+        //lolow ID : "https://script.google.com/macros/s/AKfycbxyk54UTxMehWUltlxDQv7L5dL4MavAygoH5bttxSZd3BQ_q4JmCONTUToyhcAoyfzDmA/exec"
 
     let originalText = ""
 
