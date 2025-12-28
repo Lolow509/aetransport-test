@@ -940,8 +940,11 @@ input[type=number] {
           get_distance = distanceKm.toFixed(2)
           get_duration = Math.round(durationMin)
 
-          const vehicleType = document.getElementById('vehicle').value;
-          console.log(vehicleType)
+          let vehicleType = document.querySelector('#vehicle').value;
+
+          let price = calculatePrice(vehicleType, distanceKm, durationMin);
+          console.log(price)
+          
           if (vehicleType) {
             const price = calculatePrice(vehicleType, distanceKm, durationMin);
             get_price = price
