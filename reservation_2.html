@@ -1028,8 +1028,10 @@ document.addEventListener('DOMContentLoaded', () => {
     
       if(currentStep == 2){
       document.querySelector(`#prev`).style.display = "block"
+        document.querySelector(`#next`).style.display = "block"
     } else if (currentStep == 1){
       document.querySelector(`#prev`).style.display = "none"
+        document.querySelector(`#next`).style.display = "block"
     } else if (currentStep == 4) {
       document.querySelector(`#next`).style.display = "none"
     }
