@@ -53,6 +53,15 @@ addEventListener("submit", (event) => {
      originalText = submitBtn.textContent;
      submitBtn.innerHTML = 'Envoi en cours <span class="spinner"></span>';
 
+
+    autres_info = JSON.stringify({
+     passengers : document.querySelector('#passengers').value,
+     bagages : document.querySelector('#bagages').value,
+     rehausseurs : document.querySelector('#rehausseurs').value,
+     eau : document.querySelector('#eau').value,
+   })
+
+
      openSheet()
 
 /*
@@ -66,18 +75,11 @@ addEventListener("submit", (event) => {
    time = document.querySelector('#get_time').value
    vehicle = document.querySelector('#get_vehicle').value || "Standard"
    message = document.querySelector('#get_message').value || ""
-
-   autres_info = JSON.stringify({
-     passengers : document.querySelector('#passengers').value || 0,
-     bagages : document.querySelector('#bagages').value || 0,
-     rehausseurs : document.querySelector('#rehausseurs').value || 0,
-     eau : document.querySelector('#eau').value || 0,
-   })
 */
 
-      get_distance = "10"
-      get_duration = "5"
-      get_price = "30,00"
+    
+
+
 
 
 
