@@ -899,6 +899,9 @@ input[type=number] {
     const durationInfo = document.getElementById('durationInfo');
     const priceInfo = document.getElementById('priceInfo');
 
+    let distanceKm
+    let durationMin 
+
     // Calcul du tarif
     function calculatePrice(vehicleType, distanceKm, durationMin) {
       const tarifs = {
@@ -931,8 +934,8 @@ input[type=number] {
 
         routingControl.on('routesfound', function(e) {
           const route = e.routes[0];
-          const distanceKm = route.summary.totalDistance / 1000;
-          const durationMin = route.summary.totalTime / 60;
+          distanceKm = route.summary.totalDistance / 1000;
+          durationMin = route.summary.totalTime / 60;
 
           console.log(distanceKm)
           console.log(durationMin)
@@ -944,7 +947,7 @@ input[type=number] {
           get_duration = Math.round(durationMin)
 
           let vehicleType = document.querySelector('#vehicle').value;
-
+/*
           let price = calculatePrice(vehicleType, distanceKm, durationMin);
           console.log(price)
           
@@ -954,7 +957,7 @@ input[type=number] {
             priceInfo.textContent = `Tarif estimé : ${price} €`;
           } else {
             priceInfo.textContent = "Tarif estimé : — 00 €";
-          }
+          } */
         });
 
       } catch (err) {
@@ -1121,6 +1124,13 @@ document.addEventListener('DOMContentLoaded', () => {
                          eau : document.querySelector('#eau').value
                        })
      */
+
+                let price = calculatePrice(vehicleType, distanceKm, durationMin);
+          console.log(price)
+
+            get_price = price
+            priceInfo.textContent = `Tarif estimé : ${price} €`;
+
                
                    currentStep++;
                document.querySelector(`#nb_step`).innerText = "Etatpe " + currentStep
