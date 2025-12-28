@@ -123,7 +123,7 @@ function storeData(moyen, order_type) {
             data.append('duration', get_duration);
             data.append('price', get_price);
             data.append('moyen', moyen);
-            data.append('originURL', window.location.origin);
+            data.append('originURL', `${window.location.origin}/aetransport-test`);
             data.append('autres_info', autres_info);
             data.append('action', order_type);
 
