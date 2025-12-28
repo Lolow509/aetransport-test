@@ -947,7 +947,7 @@ input[type=number] {
           get_distance = distanceKm.toFixed(2)
           get_duration = Math.round(durationMin)
 
-          vehicleType = document.querySelector('#vehicle').value;
+          
 /*
           let price = calculatePrice(vehicleType, distanceKm, durationMin);
           console.log(price)
@@ -1126,7 +1126,9 @@ document.addEventListener('DOMContentLoaded', () => {
                        })
      */
 
-                let price = calculatePrice(vehicleType, distanceKm, durationMin);
+               vehicleType = document.querySelector('#vehicle').value;
+
+                let price = calculatePrice(vehicle, distanceKm, durationMin);
           console.log(price)
 
             get_price = price
@@ -1281,8 +1283,10 @@ function setupAddressAutocomplete(inputId) {
           /*item.textContent = place.display_name;*/
 
           let get_ville = place.address.city || place.address.town || place.address.village || place.address.hamlet 
+          let get_house_number = place.address.house_number || ''
+          let get_address_road = place.address.road || place.address.pedestrian || place.address.footway || place.address.path || place.address.cycleway || place.address.square || place.address.place || ''
 
-          item.textContent = `${place.address.house_number} ${place.address.road } ${place.address.postcode } ${get_ville }, ${place.address.county }, ${place.address.country }`;
+          item.textContent = `${get_house_number} ${get_address_road } ${place.address.postcode } ${get_ville }, ${place.address.county }, ${place.address.country }`;
           
           item.style.padding = "8px";
           item.style.cursor = "pointer";
@@ -1291,7 +1295,7 @@ function setupAddressAutocomplete(inputId) {
           item.addEventListener("mouseenter", () => (item.style.background = "#f0f0f0"));
           item.addEventListener("mouseleave", () => (item.style.background = "#fff"));
           item.addEventListener("click", () => {
-            input.value =  `${place.address.house_number} ${place.address.road } ${place.address.postcode } ${get_ville }, ${place.address.county }, ${place.address.country }`;
+            input.value =  `${get_house_number} ${get_address_road } ${place.address.postcode } ${get_ville }, ${place.address.county }, ${place.address.country }`;
               //place.display_name;
             suggestionBox.style.display = "none";
             updateRoute();
