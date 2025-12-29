@@ -4,6 +4,16 @@
 
     let originalText = ""
 
+
+    const today = new Date().toISOString().split('T')[0];
+
+    document.querySelector('#create_data').innerHTML = `
+          <label for="date">Date</label>
+        <input type="date" id="date" name="date"  min="${today}" onclick="this.showPicker()" required />
+        `;
+
+    
+
     function showToast(message) {
       const toast = document.getElementById('toast');
       toast.textContent = message;
