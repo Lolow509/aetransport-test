@@ -1063,14 +1063,18 @@ document.addEventListener('DOMContentLoaded', () => {
     
     if (currentStep === 1) {
       // name = document.querySelector('#name').value 
-      email = document.querySelector('#email').value
-      phone = document.querySelector('#phone').value
+      // email = document.querySelector('#email').value
+      // phone = document.querySelector('#phone').value
 
 
 
-      let nameInput = document.querySelector('#name').value.trim();
+      let name_input = document.querySelector('#name').value.trim();
+      let email_input = document.querySelector('#email').value
+      let phone_input = document.querySelector('#phone').value
 
-      let name = nameInput.length > 5 ? nameInput : "";
+      let name = name_input.length > 5 ? name_input : "";
+      let email = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email_input) ? email_input : "";
+      let phone = phone_input.length > 5 ? phone_input : "";
 
 
        if(name.trim() != "" && email.trim() != "" && phone.trim() != "" ){
