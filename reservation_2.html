@@ -1062,9 +1062,16 @@ document.addEventListener('DOMContentLoaded', () => {
     
     
     if (currentStep === 1) {
-      name = document.querySelector('#name').value 
+      // name = document.querySelector('#name').value 
       email = document.querySelector('#email').value
       phone = document.querySelector('#phone').value
+
+
+
+      let nameInput = document.querySelector('#name').value.trim();
+
+      let name = nameInput.length > 5 ? nameInput : "";
+
 
        if(name.trim() != "" && email.trim() != "" && phone.trim() != "" ){
          
